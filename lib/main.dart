@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
+import 'package:sophis/app/home/ui/pages/details.dart';
+import 'package:sophis/app/home/ui/pages/main.dart';
 import 'package:sophis/config/theme/color_schemes.g.dart';
-import 'package:sophis/cubit/philosophers_cubit.dart';
-import 'package:sophis/ui/pages/details.dart';
-import 'package:sophis/ui/pages/main.dart';
 
 final _router = GoRouter(
   routes: [

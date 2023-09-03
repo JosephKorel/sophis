@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sophis/cubit/philosophers_cubit.dart';
-import 'package:sophis/domain/philosopher_enum.dart';
-import 'package:sophis/ui/widgets/card.dart';
+import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
+import 'package:sophis/app/home/domain/philosopher_enum.dart';
+import 'package:sophis/app/home/ui/widgets/card.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

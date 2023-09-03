@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sophis/domain/philosopher_entity.dart';
+import 'package:sophis/app/home/domain/philosopher_entity.dart';
+import 'package:sophis/app/home/ui/widgets/advice_dialog.dart';
 
 class PhilosopherCardWidget extends StatelessWidget {
   const PhilosopherCardWidget({required this.philosopher, super.key});
@@ -101,7 +102,7 @@ class PhilosopherCardWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 FilledButton.icon(
-                  onPressed: seeDetails,
+                  onPressed: () => _openAdviceDialog(context),
                   icon: const Icon(Icons.bubble_chart),
                   label: const Text('ASK FOR ADVICE'),
                   style: FilledButton.styleFrom(
@@ -119,10 +120,13 @@ class PhilosopherCardWidget extends StatelessWidget {
   }
 }
 
-/* style: TextButton.styleFrom(
-                        foregroundColor: Theme.of(context).colorScheme.primary,
-                        textStyle:
-                            Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                      ), */
+void _openAdviceDialog(BuildContext context) {
+  showDialog<void>(
+    context: context,
+    builder: (_) {
+      return const AlertDialog(
+        content: AdviceDialog(),
+      );
+    },
+  );
+}

@@ -1,4 +1,4 @@
-import 'package:sophis/domain/philosopher_entity.dart';
+import 'package:sophis/app/home/domain/philosopher_entity.dart';
 
 enum Philosophers {
   seneca,
