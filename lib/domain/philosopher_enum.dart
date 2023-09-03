@@ -8,7 +8,7 @@ enum Philosophers {
   PhilosopherEntity info() {
     switch (name) {
       case 'seneca':
-        return PhilosopherEntity(
+        return const PhilosopherEntity(
           name: 'Seneca',
           country: 'Spain',
           school: 'Stoicism',
@@ -17,27 +17,27 @@ enum Philosophers {
         );
 
       case 'kant':
-        return PhilosopherEntity(
+        return const PhilosopherEntity(
           name: 'Immanuel Kant',
           country: 'Germany',
           school: 'Critical Philosophy',
           quote:
-              '''"Act only according to that maxim by which you can at the same time will that it should become a universal law."''',
+              '''"Experience without theory is blind, but theory without experience is mere intellectual play."''',
           image: 'assets/kant.png',
         );
 
       case 'nietzsche':
-        return PhilosopherEntity(
+        return const PhilosopherEntity(
           name: 'Friedrich Nietzsche',
           country: 'Germany',
           school: 'Existentialism',
           quote:
-              '''"He who fights with monsters should be careful lest he thereby become a monster. And if you gaze long enough into an abyss, the abyss also gazes into you."''',
+              '''“He who fights with monsters should look to it that he himself does not become a monster.”''',
           image: 'assets/nietzsche.png',
         );
 
       default:
-        return PhilosopherEntity(
+        return const PhilosopherEntity(
           name: 'Seneca',
           country: 'Spain',
           school: 'Stoicism',

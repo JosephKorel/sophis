@@ -83,8 +83,12 @@ class _HomeViewState extends State<HomeView> {
                             onPressed: _previousPage,
                             icon: const Icon(Icons.chevron_left),
                             style: IconButton.styleFrom(
-                              backgroundColor:
-                                  const Color(0xFF1E2B3B).withOpacity(0.6),
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onPrimary,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withOpacity(0.2),
                             ),
                           ).animate().slideX(begin: -2, end: 0)
                         else
@@ -94,8 +98,12 @@ class _HomeViewState extends State<HomeView> {
                             onPressed: _nextPage,
                             icon: const Icon(Icons.chevron_right),
                             style: IconButton.styleFrom(
-                              backgroundColor:
-                                  const Color(0xFF1E2B3B).withOpacity(0.6),
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onPrimary,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withOpacity(0.2),
                             ),
                           ).animate().slideX(begin: 2, end: 0)
                         else

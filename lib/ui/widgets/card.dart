@@ -16,74 +16,113 @@ class PhilosopherCardWidget extends StatelessWidget {
       context.go('/details');
     }
 
-    return Column(
-      children: [
-        ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 4,
-              sigmaY: 4,
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 4,
+          sigmaY: 4,
+        ),
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.3,
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E2B3B).withOpacity(0.6),
+            borderRadius: BorderRadius.circular(32),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 28,
+              vertical: 16,
             ),
-            child: Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.25,
-              decoration: BoxDecoration(
-                color: const Color(0xFF1E2B3B).withOpacity(0.6),
-                borderRadius: BorderRadius.circular(32),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 28,
-                  vertical: 16,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      philosopher.name.toUpperCase(),
-                      style: GoogleFonts.kadwa(
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .headlineLarge!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              height: 1,
-                              fontWeight: FontWeight.bold,
-                              fontSize: philosopher.name.length > 12 ? 26 : 26,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            philosopher.name.toUpperCase(),
+                            style: GoogleFonts.kadwa(
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .headlineLarge!
+                                  .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                    height: 1,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        philosopher.name.length > 12 ? 26 : 26,
+                                  ),
                             ),
+                          ),
+                          Text(
+                            philosopher.school,
+                            style:
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary
+                                          .withOpacity(0.7),
+                                    ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      philosopher.school,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimary
-                                .withOpacity(0.7),
-                          ),
-                    ),
-                    Text(
-                      philosopher.quote,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimary
-                                .withOpacity(0.7),
-                            fontStyle: FontStyle.italic,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                    TextButton(
+                    IconButton.filled(
                       onPressed: seeDetails,
-                      child: const Text('See Details'),
+                      icon: const Icon(Icons.arrow_outward),
+                      style: IconButton.styleFrom(
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onPrimary,
+                        backgroundColor: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.2),
+                      ),
                     ),
                   ],
                 ),
-              ),
+                Text(
+                  philosopher.quote,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onPrimary
+                            .withOpacity(0.9),
+                        fontStyle: FontStyle.italic,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+                FilledButton.icon(
+                  onPressed: seeDetails,
+                  icon: const Icon(Icons.bubble_chart),
+                  label: const Text('ASK FOR ADVICE'),
+                  style: FilledButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
+
+/* style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).colorScheme.primary,
+                        textStyle:
+                            Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                      ), */
