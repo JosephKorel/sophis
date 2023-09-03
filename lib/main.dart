@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sophis/cubit/philosophers_cubit.dart';
 import 'package:sophis/ui/pages/main.dart';
 
 void main() {
@@ -17,7 +19,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E2B3B)),
         useMaterial3: true,
       ),
-      home: const HomeView(),
+      home: BlocProvider(
+        create: (_) => PhilosophersCubit(),
+        child: const HomeView(),
+      ),
     );
   }
 }

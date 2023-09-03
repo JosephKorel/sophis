@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sophis/cubit/philosophers_cubit.dart';
 import 'package:sophis/domain/philosopher_enum.dart';
 import 'package:sophis/ui/widgets/card.dart';
 
@@ -12,9 +14,10 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   late PageController _controller;
   late int pageIndex;
-  double scrollOffset = 0;
 
   void _onPageChange(int index) {
+    context.read<PhilosophersCubit>().onPageChange(index);
+
     setState(() {
       pageIndex = index;
     });
@@ -24,11 +27,6 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     _controller = PageController();
-    _controller.addListener(() {
-      setState(() {
-        scrollOffset = _controller.page ?? 0.0;
-      });
-    });
     pageIndex = _controller.initialPage;
   }
 
