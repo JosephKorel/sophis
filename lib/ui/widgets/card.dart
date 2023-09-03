@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sophis/cubit/philosophers_cubit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sophis/domain/philosopher_entity.dart';
 
 class PhilosopherCardWidget extends StatelessWidget {
@@ -12,7 +11,9 @@ class PhilosopherCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final philosopherCard = context.watch<PhilosophersCubit>().state;
+    void seeDetails() {
+      context.go('/details');
+    }
 
     return Column(
       children: [
@@ -63,6 +64,10 @@ class PhilosopherCardWidget extends StatelessWidget {
                             fontStyle: FontStyle.italic,
                           ),
                       textAlign: TextAlign.center,
+                    ),
+                    TextButton(
+                      onPressed: seeDetails,
+                      child: const Text('See Details'),
                     ),
                   ],
                 ),
