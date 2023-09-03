@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/home/domain/philosopher_entity.dart';
@@ -61,7 +62,7 @@ class PhilosopherCardWidget extends StatelessWidget {
                                         philosopher.name.length > 12 ? 26 : 26,
                                   ),
                             ),
-                          ),
+                          ).animate(delay: .200.seconds).fadeIn().slideX(),
                           Text(
                             philosopher.school,
                             style:
@@ -72,7 +73,7 @@ class PhilosopherCardWidget extends StatelessWidget {
                                           .withOpacity(0.7),
                                     ),
                             textAlign: TextAlign.left,
-                          ),
+                          ).animate(delay: .200.seconds).fadeIn().slideX(),
                         ],
                       ),
                     ),
@@ -87,7 +88,10 @@ class PhilosopherCardWidget extends StatelessWidget {
                             .primary
                             .withOpacity(0.2),
                       ),
-                    ),
+                    )
+                        .animate(delay: .200.seconds)
+                        .fadeIn()
+                        .slideX(begin: 2, end: 0),
                   ],
                 ),
                 Text(
@@ -100,7 +104,7 @@ class PhilosopherCardWidget extends StatelessWidget {
                         fontStyle: FontStyle.italic,
                       ),
                   textAlign: TextAlign.center,
-                ),
+                ).animate(delay: .300.seconds).fadeIn(),
                 FilledButton.icon(
                   onPressed: () => _openAdviceDialog(context),
                   icon: const Icon(Icons.bubble_chart),
@@ -110,7 +114,10 @@ class PhilosopherCardWidget extends StatelessWidget {
                     backgroundColor:
                         Theme.of(context).colorScheme.primary.withOpacity(0.2),
                   ),
-                ),
+                )
+                    .animate(delay: .200.seconds)
+                    .fadeIn()
+                    .slideY(begin: 2, end: 0),
               ],
             ),
           ),
