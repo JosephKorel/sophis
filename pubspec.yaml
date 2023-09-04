@@ -43,6 +43,7 @@ dependencies:
   go_router: ^10.1.2
   flutter_animate: ^4.2.0+1
   google_fonts: ^5.1.0
+  mockito: ^5.4.2
 
 dev_dependencies:
   flutter_test:
