@@ -4,6 +4,10 @@ import 'package:dio/dio.dart';
 
 /// Decode API response
 final class ApiResponseModel {
+  const ApiResponseModel._();
+
+  static const instance = ApiResponseModel._();
+
   String getResponse({required Response<dynamic> response}) {
     try {
       // final responseBody = utf8.decode(response.data);

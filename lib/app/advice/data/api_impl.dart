@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:sophis/app/advice/data/dio_client.dart';
+import 'package:sophis/app/advice/data/response_model.dart';
 import 'package:sophis/app/advice/domain/api.dart';
 import 'package:sophis/app/core/error.dart';
 import 'package:sophis/app/core/types.dart';
@@ -14,6 +15,8 @@ final class ApiRepositoryImpl extends ApiRepository {
 
   static const _endpoint = '/completions';
 
+  final _apiResponseModel = ApiResponseModel.instance;
+
   @override
   Result<String> getAdvice({
     required PhilosopherEntity philosopher,
@@ -22,7 +25,9 @@ final class ApiRepositoryImpl extends ApiRepository {
     try {
       final response = await _dioClient.client.get(_endpoint);
 
-      return const Right('');
+      final data = _apiResponseModel.getResponse(response: response);
+
+      return Right(data);
     } on SocketException {
       return const Left(
         ConnectionFailure('Seems like your connection is unstable'),
