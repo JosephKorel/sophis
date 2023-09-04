@@ -3,18 +3,14 @@ import 'dart:convert';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
 extension PhilosopherModelPersonality on Philosophers {
-  ApiRequestBody personality() {
+  String personality() {
     // TODO: Create all personalities
     switch (name) {
       case 'seneca':
-        return const ApiRequestBody(
-          modelPersonality: 'You are the spanish philosopher Seneca',
-        );
+        return 'You are the spanish philosopher Seneca';
 
       default:
-        return const ApiRequestBody(
-          modelPersonality: 'You are the spanish philosopher Seneca',
-        );
+        return 'You are the spanish philosopher Seneca';
     }
   }
 }
