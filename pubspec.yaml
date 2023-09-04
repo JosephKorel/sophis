@@ -45,6 +45,7 @@ dependencies:
   google_fonts: ^5.1.0
   mockito: ^5.4.2
   build_runner: ^2.4.6
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/seneca.png
     - assets/kant.png
     - assets/nietzsche.png
