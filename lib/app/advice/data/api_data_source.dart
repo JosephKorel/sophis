@@ -11,13 +11,7 @@ final class ApiDataSource {
     try {
       final response = await _dioClient.postRequest(body: body);
 
-      final data = response.data;
-
-      if (data == null) {
-        throw Exception();
-      }
-
-      return data;
+      return response.data!;
     } catch (e) {
       rethrow;
     }

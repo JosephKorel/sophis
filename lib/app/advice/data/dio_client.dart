@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final class DioClient {
   DioClient(this._dio);
@@ -9,9 +10,7 @@ final class DioClient {
 
   static const _endpoint = '/completions';
 
-  // static final String _apiKey = dotenv.env['OPENAI_API_KEY']!;
-
-  static const String _apiKey = '123123123';
+  static final String _apiKey = dotenv.env['OPENAI_API_KEY']!;
 
   static final Map<String, String> _headers = {
     'Content-Type': 'application/json; charset=UTF-8',
@@ -32,6 +31,10 @@ final class DioClient {
     try {
       final response =
           await _dio.post<Map<String, dynamic>>(_endpoint, data: body);
+
+      if (response.statusCode != 200) {
+        throw Exception();
+      }
 
       return response;
     } catch (e) {

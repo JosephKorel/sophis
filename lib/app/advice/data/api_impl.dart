@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:sophis/app/advice/data/api_data_source.dart';
+import 'package:sophis/app/advice/data/dio_client.dart';
 import 'package:sophis/app/advice/data/response_model.dart';
 import 'package:sophis/app/advice/domain/api.dart';
 import 'package:sophis/app/advice/domain/request_body.dart';
@@ -11,9 +11,9 @@ import 'package:sophis/app/home/domain/philosopher_entity.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
 final class ApiRepositoryImpl extends ApiRepository {
-  ApiRepositoryImpl(this._apiDataSource);
+  ApiRepositoryImpl(this._dioClient);
 
-  final ApiDataSource _apiDataSource;
+  final DioClient _dioClient;
 
   final _apiResponseModel = ApiResponseModel.instance;
 
@@ -30,9 +30,9 @@ final class ApiRepositoryImpl extends ApiRepository {
       final body = ApiRequestBody(modelPersonality: modelPersonality)
           .body(userInput: userInput);
 
-      final response = await _apiDataSource.postRequest(body: body);
+      final response = await _dioClient.postRequest(body: body);
 
-      final data = _apiResponseModel.getResponse(response: response);
+      final data = _apiResponseModel.getResponse(response: response.data!);
 
       return Right(data);
     } on SocketException {
