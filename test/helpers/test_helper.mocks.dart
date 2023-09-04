@@ -7,8 +7,8 @@ import 'dart:async' as _i9;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:dio/src/adapter.dart' as _i4;
-import 'package:dio/src/cancel_token.dart' as _i12;
-import 'package:dio/src/dio.dart' as _i11;
+import 'package:dio/src/cancel_token.dart' as _i13;
+import 'package:dio/src/dio.dart' as _i12;
 import 'package:dio/src/dio_mixin.dart' as _i6;
 import 'package:dio/src/options.dart' as _i3;
 import 'package:dio/src/response.dart' as _i7;
@@ -16,6 +16,7 @@ import 'package:dio/src/transformer.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:sophis/app/advice/domain/api.dart' as _i8;
 import 'package:sophis/app/core/error.dart' as _i10;
+import 'package:sophis/app/home/domain/philosopher_entity.dart' as _i11;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -98,11 +99,18 @@ class MockApiRepository extends _i1.Mock implements _i8.ApiRepository {
   }
 
   @override
-  _i9.Future<_i2.Either<_i10.Failure, String>> getAdvice() =>
+  _i9.Future<_i2.Either<_i10.Failure, String>> getAdvice({
+    required _i11.PhilosopherEntity? philosopher,
+    required String? userInput,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #getAdvice,
           [],
+          {
+            #philosopher: philosopher,
+            #userInput: userInput,
+          },
         ),
         returnValue: _i9.Future<_i2.Either<_i10.Failure, String>>.value(
             _FakeEither_0<_i10.Failure, String>(
@@ -110,6 +118,10 @@ class MockApiRepository extends _i1.Mock implements _i8.ApiRepository {
           Invocation.method(
             #getAdvice,
             [],
+            {
+              #philosopher: philosopher,
+              #userInput: userInput,
+            },
           ),
         )),
       ) as _i9.Future<_i2.Either<_i10.Failure, String>>);
@@ -118,7 +130,7 @@ class MockApiRepository extends _i1.Mock implements _i8.ApiRepository {
 /// A class which mocks [Dio].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class DioMockClient extends _i1.Mock implements _i11.Dio {
+class DioMockClient extends _i1.Mock implements _i12.Dio {
   DioMockClient() {
     _i1.throwOnMissingStub(this);
   }
@@ -195,7 +207,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -227,7 +239,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Uri? uri, {
     Object? data,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -258,7 +270,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
@@ -293,7 +305,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Uri? uri, {
     Object? data,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
       (super.noSuchMethod(
@@ -327,7 +339,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
@@ -365,7 +377,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Uri? uri, {
     Object? data,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
@@ -402,7 +414,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
@@ -440,7 +452,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Uri? uri, {
     Object? data,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
@@ -477,7 +489,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
@@ -515,7 +527,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Uri? uri, {
     Object? data,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
   }) =>
@@ -552,7 +564,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Object? data,
     Map<String, dynamic>? queryParameters,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -584,7 +596,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Uri? uri, {
     Object? data,
     _i3.Options? options,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -615,7 +627,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     dynamic savePath, {
     _i3.ProgressCallback? onReceiveProgress,
     Map<String, dynamic>? queryParameters,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
@@ -664,7 +676,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     Uri? uri,
     dynamic savePath, {
     _i3.ProgressCallback? onReceiveProgress,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     bool? deleteOnError = true,
     String? lengthHeader = r'content-length',
     Object? data,
@@ -711,7 +723,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
     String? url, {
     Object? data,
     Map<String, dynamic>? queryParameters,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.Options? options,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
@@ -749,7 +761,7 @@ class DioMockClient extends _i1.Mock implements _i11.Dio {
   _i9.Future<_i7.Response<T>> requestUri<T>(
     Uri? uri, {
     Object? data,
-    _i12.CancelToken? cancelToken,
+    _i13.CancelToken? cancelToken,
     _i3.Options? options,
     _i3.ProgressCallback? onSendProgress,
     _i3.ProgressCallback? onReceiveProgress,
