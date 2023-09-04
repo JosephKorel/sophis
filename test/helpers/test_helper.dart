@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:mockito/annotations.dart';
 import 'package:sophis/app/advice/domain/api.dart';
 
@@ -6,6 +5,5 @@ import 'package:sophis/app/advice/domain/api.dart';
   [
     ApiRepository,
   ],
-  customMocks: [MockSpec<Dio>(as: #DioMockClient)],
 )
 void main() {}
