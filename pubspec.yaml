@@ -79,6 +79,10 @@ flutter:
     - assets/seneca.png
     - assets/kant.png
     - assets/nietzsche.png
+    - assets/descartes.png
+    - assets/plato.png
+    - assets/confucius.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
