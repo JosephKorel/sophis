@@ -3,10 +3,20 @@ import 'package:sophis/app/home/domain/philosopher_entity.dart';
 enum Philosophers {
   seneca,
   kant,
-  nietzsche;
+  nietzsche,
+  plato,
+  descartes,
+  confucius;
 
   String philosopherName() {
-    return ['Seneca', 'Immanuel Kant', 'Friedrich Nietzsche'][index];
+    return [
+      'Seneca',
+      'Immanuel Kant',
+      'Friedrich Nietzsche',
+      'Plato',
+      'René Descartes',
+      'Confucius',
+    ][index];
   }
 
   PhilosopherEntity info() {
@@ -39,6 +49,32 @@ enum Philosophers {
               '''“He who fights with monsters should look to it that he himself does not become a monster.”''',
           image: 'assets/nietzsche.png',
         );
+      case 'plato':
+        return const PhilosopherEntity(
+          name: 'Plato',
+          country: 'Greece',
+          school: 'Platonism',
+          quote: '"At the touch of love, everyone becomes a poet."',
+          image: 'assets/plato.png',
+        );
+      case 'descartes':
+        return const PhilosopherEntity(
+          name: 'René Descartes',
+          country: 'France',
+          school: 'Rationalism',
+          quote: '"I think, therefore I am."',
+          image: 'assets/descartes.png',
+        );
+
+      case 'confucius':
+        return const PhilosopherEntity(
+          name: 'Confucius',
+          country: 'China',
+          school: 'Confucianism',
+          quote:
+              '''"Our greatest glory is not in never falling, but in rising every time we fall."''',
+          image: 'assets/confucius.png',
+        );
 
       default:
         return const PhilosopherEntity(
@@ -64,6 +100,15 @@ Seneca, a Stoic Philosopher, encourages wisdom, virtue, and resilience in the fa
 
       case 'nietzsche':
         return '''Nietzsche's Existentialist Philosophy explores individualism and the will to power. Seek advice through his unique lens of philosophy.''';
+
+      case 'plato':
+        return '''Plato, the philosopher of Platonism, delves into the realm of Forms and the pursuit of knowledge. Discover the world of ideal forms and philosophical truths through his guidance.''';
+
+      case 'descartes':
+        return '''René Descartes, the prominent rationalist philosopher, advocates for reason and skepticism. Explore the world of clear and distinct ideas as you seek his guidance in matters of critical thinking and doubt.''';
+
+      case 'confucius':
+        return '''Confucius, a renowned philosopher of Confucianism, emphasizes the importance of ethics, family values, and social harmony. Seek his wisdom for guidance in matters of virtue and harmonious living.''';
 
       default:
         return '';
