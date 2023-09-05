@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
 final class PhilosopherEntity extends Equatable {
   const PhilosopherEntity({
@@ -17,4 +18,7 @@ final class PhilosopherEntity extends Equatable {
   final String school;
   final String quote;
   final String image;
+
+  Philosophers getPhilosopher() => Philosophers.values
+      .firstWhere((element) => element.philosopherName() == name);
 }

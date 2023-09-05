@@ -54,6 +54,7 @@ class _HomeViewState extends State<HomeView> {
     final philosophers = Philosophers.values.map((e) => e.info()).toList();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: PageView.builder(
         controller: _controller,
         itemCount: philosophers.length,
