@@ -57,8 +57,7 @@ extension AdviceDialogContent on Philosophers {
     switch (name) {
       case 'seneca':
         return '''
-Seneca, a Stoic Philosopher, encourages wisdom, virtue, and resilience in the face of life's challenges. Seek his Stoic wisdom in your quest for guidance.
-        ''';
+Seneca, a Stoic Philosopher, encourages wisdom, virtue, and resilience in the face of life's challenges. Seek his Stoic wisdom in your quest for guidance.''';
 
       case 'kant':
         return '''Kant's Philosophy of Ethics emphasizes the importance of moral principles and universal laws. Ask him for ethical guidance.''';

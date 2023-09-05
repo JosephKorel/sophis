@@ -4,18 +4,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
-class AdviceDialog extends StatefulWidget {
+class AdviceDialog extends StatelessWidget {
   const AdviceDialog({super.key});
 
   @override
-  State<AdviceDialog> createState() => _AdviceDialogState();
-}
-
-class _AdviceDialogState extends State<AdviceDialog> {
-  @override
   Widget build(BuildContext context) {
+    final controller = TextEditingController();
     final philosopher = context.watch<PhilosophersCubit>();
     final title = philosopher.state.getPhilosopher().title();
+
+    void close() {
+      Navigator.of(context).pop();
+    }
+
+    void handleAsk() {
+      final userInput = controller.text;
+
+      if (userInput.isEmpty) {
+        _emptyTextSnackbar(context);
+        return;
+      }
+    }
 
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.9,
@@ -39,41 +48,47 @@ class _AdviceDialogState extends State<AdviceDialog> {
               ),
               textAlign: TextAlign.center,
             ),
-            TextField(
-              minLines: 3,
-              maxLines: 4,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Theme.of(context).colorScheme.background,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.primary,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: TextField(
+                controller: controller,
+                minLines: 3,
+                maxLines: 4,
+                maxLength: 92,
+                decoration: InputDecoration(
+                  hintText: 'Ex: How can i be more disciplined?',
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  counterText: '',
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.background,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onSurface
-                        .withOpacity(0.2),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withOpacity(0.2),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 16,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: close,
                   child: const Text('Close'),
                 ),
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: handleAsk,
                   child: const Text('ASK'),
                 ),
               ],
@@ -83,4 +98,12 @@ class _AdviceDialogState extends State<AdviceDialog> {
       ),
     );
   }
+}
+
+void _emptyTextSnackbar(BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('Your message must be at least 8 characters length'),
+    ),
+  );
 }

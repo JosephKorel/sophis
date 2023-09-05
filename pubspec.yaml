@@ -48,6 +48,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   bloc_test: ^9.1.4
   get_it: ^7.6.4
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:
