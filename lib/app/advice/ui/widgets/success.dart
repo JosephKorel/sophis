@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sophis/app/advice/bloc/advice_bloc.dart';
 
@@ -13,7 +14,7 @@ class ReceivedAdviceView extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          Text(advice),
+          Text(advice).animate().shimmer(),
         ],
       ),
     );

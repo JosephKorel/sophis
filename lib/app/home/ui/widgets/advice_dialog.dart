@@ -26,15 +26,15 @@ class AdviceDialog extends StatelessWidget {
     void handleAsk() {
       final userInput = controller.text;
 
-      /* if (userInput.isEmpty) {
+      if (userInput.isEmpty) {
         _showFlushBar(context);
         return;
-      } */
+      }
 
       context.read<AdviceBloc>().add(
             FetchAdviceEvent(
               philosopherEntity: philosopher,
-              userInput: 'How can i maintain my diet?',
+              userInput: userInput,
             ),
           );
 
@@ -46,7 +46,7 @@ class AdviceDialog extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.9,
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
@@ -58,7 +58,7 @@ class AdviceDialog extends StatelessWidget {
                       color: Theme.of(context)
                           .colorScheme
                           .onSurface
-                          .withOpacity(0.8),
+                          .withOpacity(0.9),
                       fontWeight: FontWeight.w500,
                     ),
                 fontStyle: FontStyle.italic,
@@ -104,9 +104,10 @@ class AdviceDialog extends StatelessWidget {
                   onPressed: close,
                   child: const Text('Close'),
                 ),
-                FilledButton(
+                FilledButton.icon(
                   onPressed: handleAsk,
-                  child: const Text('ASK'),
+                  icon: const Icon(Icons.check_rounded),
+                  label: const Text('Submit'),
                 ),
               ],
             ),

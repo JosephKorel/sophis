@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Sophis',
         debugShowCheckedModeBanner: false,
+        // themeMode: ThemeMode.dark,
         theme: ThemeData(
           colorScheme: lightColorScheme,
           useMaterial3: true,
