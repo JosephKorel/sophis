@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/app/advice/ui/widgets/success.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 
 class AdviceView extends StatelessWidget {
@@ -20,9 +21,7 @@ class AdviceView extends StatelessWidget {
             LoadingAdvice() => const Center(
                 child: CircularProgressIndicator(),
               ),
-            ReceivedAdvice(advice: final advice) => const Center(
-                child: Text('We have data'),
-              ),
+            ReceivedAdvice(advice: _) => const ReceivedAdviceView(),
             AdviceFailure() => const Center(
                 child: Text('Oops, error'),
               ),
