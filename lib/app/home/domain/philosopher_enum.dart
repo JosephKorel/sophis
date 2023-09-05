@@ -54,7 +54,8 @@ enum Philosophers {
           name: 'Plato',
           country: 'Greece',
           school: 'Platonism',
-          quote: '"At the touch of love, everyone becomes a poet."',
+          quote:
+              '''"The penalty good men pay for indifference to public affairs is to be ruled by evil men."''',
           image: 'assets/plato.png',
         );
       case 'descartes':

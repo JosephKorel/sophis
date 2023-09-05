@@ -47,8 +47,10 @@ void main() {
           userInput: userInput,
         ),
       ),
-      expect: () =>
-          [const LoadingAdvice(), const ReceivedAdvice(advice: receivedAdvice)],
+      expect: () => [
+        const LoadingAdvice(),
+        const ReceivedAdvice(advice: receivedAdvice, userInput: userInput)
+      ],
     );
 
     blocTest<AdviceBloc, AdviceState>(

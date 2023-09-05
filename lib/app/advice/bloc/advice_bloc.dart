@@ -26,7 +26,7 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
 
     advice.fold(
       (l) => emit(AdviceFailure(failure: l)),
-      (r) => emit(ReceivedAdvice(advice: r)),
+      (r) => emit(ReceivedAdvice(advice: r, userInput: event.userInput)),
     );
   }
 }
