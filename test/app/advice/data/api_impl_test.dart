@@ -8,14 +8,14 @@ import 'package:sophis/app/advice/data/response_model.dart';
 import '../../../constants/api_response.dart';
 import 'api_impl_test.mocks.dart';
 
-@GenerateMocks([Dio])
+@GenerateMocks([Dio, DioProvider])
 void main() {
   late MockDio dio;
-  late DioClient dioClient;
+  late ApiDataSource dioClient;
 
   setUp(() {
     dio = MockDio();
-    dioClient = DioClient(dio);
+    dioClient = ApiDataSource();
   });
 
   const testBody = {'a': 'a'};
@@ -27,7 +27,7 @@ void main() {
       when(
         dioClient.postRequest(body: testBody),
       ).thenAnswer(
-        (realInvocation) async => Response(
+        (_) async => Response(
           statusCode: 200,
           data: expectedResponse,
           requestOptions:

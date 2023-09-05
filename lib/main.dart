@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/app/advice/ui/pages/main.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/ui/pages/details.dart';
 import 'package:sophis/app/home/ui/pages/main.dart';
@@ -19,6 +20,10 @@ final _router = GoRouter(
         GoRoute(
           path: 'details',
           builder: (context, state) => const PhilosopherDetailsView(),
+        ),
+        GoRoute(
+          path: 'advice',
+          builder: (context, state) => const AdviceView(),
         ),
       ],
     ),

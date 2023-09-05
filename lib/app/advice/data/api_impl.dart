@@ -13,7 +13,7 @@ import 'package:sophis/app/home/domain/philosopher_enum.dart';
 final class ApiRepositoryImpl extends ApiRepository {
   ApiRepositoryImpl(this._dioClient);
 
-  final DioClient _dioClient;
+  final ApiDataSource _dioClient;
 
   final _apiResponseModel = ApiResponseModel.instance;
 

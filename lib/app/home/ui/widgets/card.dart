@@ -15,7 +15,7 @@ class PhilosopherCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void seeDetails() {
-      context.go('/details');
+      context.go('/advice');
     }
 
     return ClipRRect(
