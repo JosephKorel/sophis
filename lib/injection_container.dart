@@ -11,7 +11,7 @@ void setUpLocator() {
   locator.registerFactory(() => AdviceBloc(locator()));
 
   // apiUseCase
-  locator.registerLazySingleton(
+  locator.registerLazySingleton<ApiUseCase>(
     () => ApiUseCase(
       locator(),
     ),
@@ -23,8 +23,8 @@ void setUpLocator() {
   );
 
   // data source
-  locator.registerLazySingleton(ApiDataSource.new);
+  locator.registerLazySingleton<ApiDataSource>(ApiDataSource.new);
 
   // dio client
-  locator.registerLazySingleton<DioProvider>(DioProvider.new);
+  // locator.registerLazySingleton<DioProvider>(DioProvider.new);
 }

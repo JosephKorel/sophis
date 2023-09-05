@@ -1,6 +1,10 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sophis/app/advice/bloc/advice_bloc.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
@@ -10,8 +14,10 @@ class AdviceDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = TextEditingController();
-    final philosopher = context.watch<PhilosophersCubit>();
-    final title = philosopher.state.getPhilosopher().title();
+    final bloc = context.watch<PhilosophersCubit>();
+
+    final philosopher = bloc.state;
+    final title = philosopher.getPhilosopher().title();
 
     void close() {
       Navigator.of(context).pop();
@@ -20,10 +26,21 @@ class AdviceDialog extends StatelessWidget {
     void handleAsk() {
       final userInput = controller.text;
 
-      if (userInput.isEmpty) {
-        _emptyTextSnackbar(context);
+      /* if (userInput.isEmpty) {
+        _showFlushBar(context);
         return;
-      }
+      } */
+
+      context.read<AdviceBloc>().add(
+            FetchAdviceEvent(
+              philosopherEntity: philosopher,
+              userInput: 'How can i maintain my diet?',
+            ),
+          );
+
+      close();
+
+      context.go('/advice');
     }
 
     return SizedBox(
@@ -100,10 +117,15 @@ class AdviceDialog extends StatelessWidget {
   }
 }
 
-void _emptyTextSnackbar(BuildContext context) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text('Your message must be at least 8 characters length'),
+void _showFlushBar(BuildContext context) {
+  Flushbar<void>(
+    message: 'Your message must be at least 8 characters length',
+    backgroundColor: Theme.of(context).colorScheme.primary,
+    icon: Icon(
+      Icons.warning_amber_sharp,
+      color: Theme.of(context).colorScheme.onPrimary,
     ),
-  );
+    duration: 3.seconds,
+    animationDuration: .4.seconds,
+  ).show(context);
 }

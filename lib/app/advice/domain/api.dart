@@ -10,15 +10,15 @@ abstract class ApiRepository {
 }
 
 final class ApiUseCase {
-  const ApiUseCase(this.apiRepository);
+  const ApiUseCase(this._apiRepository);
 
-  final ApiRepository apiRepository;
+  final ApiRepository _apiRepository;
 
   Result<String> call({
     required PhilosopherEntity philosopher,
     required String userInput,
   }) {
-    return apiRepository.getAdvice(
+    return _apiRepository.getAdvice(
       philosopher: philosopher,
       userInput: userInput,
     );

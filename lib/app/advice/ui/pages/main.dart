@@ -16,7 +16,7 @@ class AdviceView extends StatelessWidget {
       body: BlocBuilder<AdviceBloc, AdviceState>(
         builder: (context, state) {
           return switch (state) {
-            AdviceInitial() => const Text('Initial State'),
+            AdviceInitial() => const Center(),
             LoadingAdvice() => const Center(
                 child: CircularProgressIndicator(),
               ),

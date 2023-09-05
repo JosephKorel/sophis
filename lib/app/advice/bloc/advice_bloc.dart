@@ -11,6 +11,7 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
   AdviceBloc(this._apiUseCase) : super(AdviceInitial()) {
     on<FetchAdviceEvent>(_fetchAdvice);
   }
+  final ApiUseCase _apiUseCase;
 
   Future<void> _fetchAdvice(
     FetchAdviceEvent event,
@@ -28,6 +29,4 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
       (r) => emit(ReceivedAdvice(advice: r)),
     );
   }
-
-  final ApiUseCase _apiUseCase;
 }

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final class DioProvider {
@@ -18,7 +17,6 @@ final class DioProvider {
     final baseOptions = BaseOptions(
       baseUrl: _url,
       headers: _headers,
-      connectTimeout: 8.seconds,
     );
 
     _dio.options = baseOptions;
@@ -36,8 +34,10 @@ final class ApiDataSource {
     required Map<String, dynamic> body,
   }) async {
     try {
-      final response =
-          await _dio.post<Map<String, dynamic>>(_endpoint, data: body);
+      final response = await _dio.post<Map<String, dynamic>>(
+        _endpoint,
+        data: body,
+      );
 
       if (response.statusCode != 200) {
         throw Exception();
