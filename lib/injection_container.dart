@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sophis/app/advice/bloc/advice_bloc.dart';
 import 'package:sophis/app/advice/data/api_impl.dart';
@@ -26,5 +27,5 @@ void setUpLocator() {
   locator.registerLazySingleton<ApiDataSource>(ApiDataSource.new);
 
   // dio client
-  // locator.registerLazySingleton<DioProvider>(DioProvider.new);
+  locator.registerLazySingleton<Dio>(Dio.new);
 }

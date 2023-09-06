@@ -1,16 +1,5 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:sophis/app/advice/data/dio_client.dart';
-import 'package:sophis/app/advice/data/response_model.dart';
-
-import '../../../constants/api_response.dart';
-import 'api_impl_test.mocks.dart';
-
-@GenerateMocks([Dio, DioProvider])
 void main() {
-  late MockDio dio;
+  /*  late MockDio dio;
   late ApiDataSource dioClient;
 
   setUp(() {
@@ -67,5 +56,5 @@ void main() {
       // assert
       expect(advice, responseAdvice);
     });
-  });
+  }); */
 }

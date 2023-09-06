@@ -7,6 +7,8 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:sophis/app/advice/data/data_source.dart' as _i7;
+import 'package:sophis/app/advice/data/dio_client.dart' as _i8;
 import 'package:sophis/app/advice/domain/api.dart' as _i3;
 import 'package:sophis/app/core/error.dart' as _i5;
 import 'package:sophis/app/home/domain/philosopher_entity.dart' as _i6;
@@ -67,4 +69,47 @@ class MockApiRepository extends _i1.Mock implements _i3.ApiRepository {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, String>>);
+}
+
+/// A class which mocks [DataSourceRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDataSourceRepository extends _i1.Mock
+    implements _i7.DataSourceRepository {
+  MockDataSourceRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<String> postRequest({required Map<String, dynamic>? body}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #postRequest,
+          [],
+          {#body: body},
+        ),
+        returnValue: _i4.Future<String>.value(''),
+      ) as _i4.Future<String>);
+}
+
+/// A class which mocks [DioOperations].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDioOperations extends _i1.Mock implements _i8.DioOperations {
+  MockDioOperations() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<Map<String, dynamic>> post(
+          {required Map<String, dynamic>? body}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #post,
+          [],
+          {#body: body},
+        ),
+        returnValue:
+            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i4.Future<Map<String, dynamic>>);
 }
