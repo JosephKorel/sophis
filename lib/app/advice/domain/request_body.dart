@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
 extension PhilosopherModelPersonality on Philosophers {
@@ -27,10 +28,13 @@ extension PhilosopherModelPersonality on Philosophers {
   }
 }
 
-final class ApiRequestBody {
+final class ApiRequestBody extends Equatable {
   const ApiRequestBody({required this.modelPersonality});
 
   final String modelPersonality;
+
+  @override
+  List<Object> get props => [modelPersonality];
 
   static const _model = 'gpt-3.5-turbo';
 

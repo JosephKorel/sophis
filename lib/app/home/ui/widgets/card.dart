@@ -149,6 +149,7 @@ void _openAdviceDialog(BuildContext context) {
     context: context,
     builder: (_) {
       return const AlertDialog(
+        elevation: 0,
         insetPadding: EdgeInsets.all(8),
         contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         content: AdviceDialog(),

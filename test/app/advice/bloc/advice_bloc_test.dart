@@ -48,8 +48,8 @@ void main() {
         ),
       ),
       expect: () => [
-        const LoadingAdvice(),
-        const ReceivedAdvice(advice: receivedAdvice, userInput: userInput)
+        AdviceInitial(),
+        const ReceivedAdvice(advice: receivedAdvice, userInput: userInput),
       ],
     );
 
@@ -76,7 +76,7 @@ void main() {
         ),
       ),
       expect: () => [
-        const LoadingAdvice(),
+        AdviceInitial(),
         const AdviceFailure(failure: ResponseFailure('Error')),
       ],
     );

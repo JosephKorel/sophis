@@ -4,7 +4,7 @@ sealed class AdviceState extends Equatable {
   const AdviceState({
     this.userInput = '',
     this.advice = '',
-    this.loading = false,
+    this.loading = true,
     this.exception,
   });
 
@@ -19,15 +19,11 @@ sealed class AdviceState extends Equatable {
 
 final class AdviceInitial extends AdviceState {}
 
-final class LoadingAdvice extends AdviceState {
-  const LoadingAdvice() : super(loading: true);
-}
-
 final class ReceivedAdvice extends AdviceState {
   const ReceivedAdvice({
-    required String userInput,
-    required String advice,
-  }) : super(userInput: userInput, advice: advice, loading: false);
+    required super.userInput,
+    required super.advice,
+  }) : super(loading: false);
 }
 
 final class AdviceFailure extends AdviceState {

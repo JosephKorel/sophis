@@ -32,8 +32,8 @@ final class ApiRepositoryImpl extends ApiRepository {
         ConnectionFailure('Seems like your connection is unstable'),
       );
     } catch (e) {
-      return const Left(
-        ResponseFailure('An unexpected error ocurred'),
+      return Left(
+        ResponseFailure(e.toString()),
       );
     }
   }
