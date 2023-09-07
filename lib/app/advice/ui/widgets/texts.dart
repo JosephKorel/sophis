@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/main.dart';
 
 class UserInputWidget extends StatefulWidget {

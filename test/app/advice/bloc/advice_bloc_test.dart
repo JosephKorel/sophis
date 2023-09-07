@@ -2,8 +2,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sophis/app/advice/bloc/advice_bloc.dart';
 import 'package:sophis/app/advice/domain/api.dart';
+import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/core/error.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 

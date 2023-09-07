@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 

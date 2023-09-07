@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 
 class AdviceViewButtons extends StatelessWidget {
   const AdviceViewButtons({super.key});

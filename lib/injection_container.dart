@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sophis/app/advice/bloc/advice_bloc.dart';
 import 'package:sophis/app/advice/data/api_impl.dart';
 import 'package:sophis/app/advice/data/data_source.dart';
 import 'package:sophis/app/advice/data/dio_client.dart';
 import 'package:sophis/app/advice/data/response_model.dart';
 import 'package:sophis/app/advice/domain/api.dart';
+import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 
 final locator = GetIt.instance;
 

@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/advice/ui/pages/main.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/ui/pages/details.dart';
 import 'package:sophis/app/home/ui/pages/main.dart';
+import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart';
 import 'package:sophis/config/theme/color_schemes.g.dart';
 import 'package:sophis/config/theme/dark_scheme.g.dart';
 import 'package:sophis/injection_container.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<PhilosophersCubit>(create: (_) => PhilosophersCubit()),
         BlocProvider(create: (_) => locator<AdviceBloc>()),
+        BlocProvider<SavedAdviceCubit>(create: (_) => SavedAdviceCubit()),
       ],
       child: MaterialApp.router(
         title: 'Sophis',
