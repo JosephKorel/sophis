@@ -13,6 +13,7 @@ class AdviceView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(philosopher.state.name),
+        scrolledUnderElevation: 0,
       ),
       body: BlocBuilder<AdviceBloc, AdviceState>(
         builder: (context, state) {

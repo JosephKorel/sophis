@@ -14,7 +14,7 @@ sealed class AdviceState extends Equatable {
   final Failure? exception;
 
   @override
-  List<Object?> get props => [advice, loading, exception];
+  List<Object?> get props => [userInput, advice, loading, exception];
 }
 
 final class AdviceInitial extends AdviceState {}

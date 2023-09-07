@@ -76,40 +76,45 @@ class _HomeViewState extends State<HomeView> {
                   const Spacer(),
                   Expanded(
                     flex: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        if (pageIndex != 0)
-                          IconButton.filled(
-                            onPressed: _previousPage,
-                            icon: const Icon(Icons.chevron_left),
-                            style: IconButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.onPrimary,
-                              backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withOpacity(0.2),
-                            ),
-                          ).animate().slideX(begin: -2, end: 0)
-                        else
-                          const SizedBox.shrink(),
-                        if (pageIndex != philosophers.length - 1)
-                          IconButton.filled(
-                            onPressed: _nextPage,
-                            icon: const Icon(Icons.chevron_right),
-                            style: IconButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.onPrimary,
-                              backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withOpacity(0.2),
-                            ),
-                          ).animate().slideX(begin: 2, end: 0)
-                        else
-                          const SizedBox(),
-                      ],
+                    child: Theme(
+                      data: cardTheme,
+                      child: Builder(
+                        builder: (ctx) => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            if (pageIndex != 0)
+                              IconButton.filled(
+                                onPressed: _previousPage,
+                                icon: const Icon(Icons.chevron_left),
+                                style: IconButton.styleFrom(
+                                  foregroundColor:
+                                      Theme.of(ctx).colorScheme.onPrimary,
+                                  backgroundColor: Theme.of(ctx)
+                                      .colorScheme
+                                      .onSurface
+                                      .withOpacity(0.2),
+                                ),
+                              ).animate().slideX(begin: -2, end: 0)
+                            else
+                              const SizedBox.shrink(),
+                            if (pageIndex != philosophers.length - 1)
+                              IconButton.filled(
+                                onPressed: _nextPage,
+                                icon: const Icon(Icons.chevron_right),
+                                style: IconButton.styleFrom(
+                                  foregroundColor:
+                                      Theme.of(ctx).colorScheme.onPrimary,
+                                  backgroundColor: Theme.of(ctx)
+                                      .colorScheme
+                                      .onSurface
+                                      .withOpacity(0.2),
+                                ),
+                              ).animate().slideX(begin: 2, end: 0)
+                            else
+                              const SizedBox(),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   PhilosopherCardWidget(philosopher: philosopher),

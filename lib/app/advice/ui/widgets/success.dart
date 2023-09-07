@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/main.dart';
 
 class ReceivedAdviceView extends StatelessWidget {
   const ReceivedAdviceView({super.key});
@@ -12,6 +13,14 @@ class ReceivedAdviceView extends StatelessWidget {
     final userInput = bloc.state.userInput;
     final advice = bloc.state.advice;
 
+    final boxShadowColor = context.isDark
+        ? Colors.black.withOpacity(0.4)
+        : Theme.of(context).colorScheme.onSurface.withOpacity(0.2);
+
+    final textBoxBg = context.isDark
+        ? Theme.of(context).colorScheme.background
+        : Theme.of(context).colorScheme.background;
+
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -20,9 +29,8 @@ class ReceivedAdviceView extends StatelessWidget {
           Text(
             userInput,
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color:
-                      Theme.of(context).colorScheme.onSurface.withOpacity(0.9),
                   fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
             textAlign: TextAlign.center,
           ).animate().shimmer(),
@@ -33,33 +41,27 @@ class ReceivedAdviceView extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color:
-                      Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
-                ),
                 boxShadow: [
                   BoxShadow(
                     offset: const Offset(0, 10),
                     blurRadius: 10,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onSurface
-                        .withOpacity(0.2),
+                    color: boxShadowColor,
                   ),
                 ],
               ),
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: Theme.of(context).colorScheme.background,
+                  color: textBoxBg,
                 ),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
+                    padding: const EdgeInsets.all(16),
+                    child: SelectableText(
                       advice,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
+                            letterSpacing: 1.2,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                       textAlign: TextAlign.justify,
                     ).animate().shimmer(),
@@ -74,22 +76,32 @@ class ReceivedAdviceView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton.icon(
+              IconButton(
                 onPressed: () {},
                 icon: const Icon(
-                  Icons.share,
+                  Icons.copy,
                 ),
-                label: const Text('Share'),
+                color: Theme.of(context).colorScheme.primary,
               ),
               const SizedBox(
                 width: 16,
               ),
-              TextButton.icon(
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.share,
+                ),
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              IconButton(
                 onPressed: () {},
                 icon: const Icon(
                   Icons.bookmark_add,
                 ),
-                label: const Text('Save'),
+                color: Theme.of(context).colorScheme.primary,
               ),
             ],
           ),

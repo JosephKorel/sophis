@@ -9,7 +9,12 @@ import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/ui/pages/details.dart';
 import 'package:sophis/app/home/ui/pages/main.dart';
 import 'package:sophis/config/theme/color_schemes.g.dart';
+import 'package:sophis/config/theme/dark_scheme.g.dart';
 import 'package:sophis/injection_container.dart';
+
+extension GetThemeMode on BuildContext {
+  bool get isDark => Theme.of(this).brightness == Brightness.dark;
+}
 
 final _router = GoRouter(
   routes: [
@@ -53,14 +58,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Sophis',
         debugShowCheckedModeBanner: false,
-        // themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.dark,
         theme: ThemeData(
           colorScheme: lightColorScheme,
           useMaterial3: true,
           textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         darkTheme: ThemeData(
-          colorScheme: darkColorScheme,
+          colorScheme: darkScheme,
           useMaterial3: true,
           textTheme: GoogleFonts.poppinsTextTheme(),
         ),
