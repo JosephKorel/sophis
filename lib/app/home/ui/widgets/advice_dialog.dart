@@ -73,7 +73,7 @@ class AdviceDialog extends StatelessWidget {
                   controller: controller,
                   minLines: 3,
                   maxLines: 4,
-                  maxLength: 92,
+                  maxLength: 182,
                   decoration: InputDecoration(
                     hintText: 'Ex: How can i be more disciplined?',
                     contentPadding: const EdgeInsets.symmetric(
@@ -98,6 +98,9 @@ class AdviceDialog extends StatelessWidget {
                             .withOpacity(0.2),
                       ),
                     ),
+                  ),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground,
                   ),
                 ),
               ),
