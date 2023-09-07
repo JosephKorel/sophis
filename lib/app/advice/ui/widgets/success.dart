@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sophis/app/advice/bloc/advice_bloc.dart';
+import 'package:sophis/app/advice/ui/widgets/texts.dart';
 import 'package:sophis/main.dart';
 
 class ReceivedAdviceView extends StatefulWidget {
@@ -17,7 +18,6 @@ class _ReceivedAdviceViewState extends State<ReceivedAdviceView> {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<AdviceBloc>();
-    final userInput = bloc.state.userInput;
     final advice = bloc.state.advice;
 
     final boxShadowColor = context.isDark
@@ -37,14 +37,7 @@ class _ReceivedAdviceViewState extends State<ReceivedAdviceView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              userInput,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    fontStyle: FontStyle.italic,
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
-              textAlign: TextAlign.center,
-            ).animate().shimmer(),
+            const UserInputWidget(),
             const SizedBox(
               height: 16,
             ),

@@ -7,7 +7,9 @@ class AdviceLoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Center(),
+      body: const Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }

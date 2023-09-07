@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 abstract class DioOperations {
@@ -43,10 +42,13 @@ final class DioImplementation extends DioOperations {
       final result = await _dio.post<Map<String, dynamic>>(
         _endpoint,
         data: body,
-        onReceiveProgress: (count, total) {
+        /* onReceiveProgress: (count, total) {
           debugPrint('ESTE ÉO COUNT');
           debugPrint(count.toString());
-        },
+
+          debugPrint('ESTE ÉO TOTAL');
+          debugPrint(total.toString());
+        }, */
       );
 
       if (result.statusCode != 200) {
