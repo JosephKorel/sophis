@@ -32,8 +32,7 @@ class PhilosopherCardWidget extends StatelessWidget {
 
     return Theme(
       data: cardTheme.copyWith(
-        colorScheme: colorScheme.copyWith(brightness: Brightness.light),
-        brightness: Brightness.light,
+        colorScheme: colorScheme,
       ),
       child: Builder(
         builder: (ctx) => ClipRRect(
@@ -82,7 +81,10 @@ class PhilosopherCardWidget extends StatelessWidget {
                                             : 26,
                                       ),
                                 ),
-                              ).animate(delay: .200.seconds).fadeIn().slideX(),
+                              ).animate(delay: .2.seconds).fadeIn().slideX(
+                                    curve: Curves.easeOutExpo,
+                                    duration: .8.seconds,
+                                  ),
                               Text(
                                 philosopher.school,
                                 style:
@@ -93,7 +95,10 @@ class PhilosopherCardWidget extends StatelessWidget {
                                               .withOpacity(0.7),
                                         ),
                                 textAlign: TextAlign.left,
-                              ).animate(delay: .200.seconds).fadeIn().slideX(),
+                              ).animate(delay: .200.seconds).fadeIn().slideX(
+                                    curve: Curves.easeOutExpo,
+                                    duration: .8.seconds,
+                                  ),
                             ],
                           ),
                         ),
@@ -108,10 +113,12 @@ class PhilosopherCardWidget extends StatelessWidget {
                                 .primary
                                 .withOpacity(0.4),
                           ),
-                        )
-                            .animate(delay: .200.seconds)
-                            .fadeIn()
-                            .slideX(begin: 2, end: 0),
+                        ).animate(delay: .200.seconds).fadeIn().slideX(
+                              begin: 2,
+                              end: 0,
+                              curve: Curves.easeOutExpo,
+                              duration: .8.seconds,
+                            ),
                       ],
                     ),
                     Text(
@@ -138,10 +145,12 @@ class PhilosopherCardWidget extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                    )
-                        .animate(delay: .200.seconds)
-                        .fadeIn()
-                        .slideY(begin: 2, end: 0),
+                    ).animate(delay: .200.seconds).fadeIn().slideY(
+                          begin: 2,
+                          end: 0,
+                          curve: Curves.easeOutExpo,
+                          duration: .8.seconds,
+                        ),
                   ],
                 ),
               ),
