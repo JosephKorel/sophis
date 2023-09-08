@@ -12,10 +12,11 @@ class PhilosophersCubit extends Cubit<PhilosopherEntity> {
   void onPageChange(int pageIndex) =>
       emit(Philosophers.values[pageIndex].info());
 
-  Future<ColorScheme> currentColorScheme() async {
+  Future<ColorScheme> currentColorScheme({required bool isDark}) async {
     final image = state.image;
     final newScheme = await ColorScheme.fromImageProvider(
       provider: AssetImage(image),
+      brightness: isDark ? Brightness.dark : Brightness.light,
     );
     return newScheme;
   }

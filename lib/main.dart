@@ -5,24 +5,26 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/advice/ui/pages/main.dart';
+import 'package:sophis/app/core/cubit/theme_cubit.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/ui/pages/details.dart';
 import 'package:sophis/app/home/ui/pages/main.dart';
 import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart';
 import 'package:sophis/app/saved_advices/ui/pages/main.dart';
-import 'package:sophis/config/theme/color_schemes.g.dart';
-import 'package:sophis/config/theme/dark_scheme.g.dart';
 import 'package:sophis/injection_container.dart';
 
 extension GetThemeMode on BuildContext {
-  bool get isDark => Theme.of(this).brightness == Brightness.dark;
+  // bool get isDark => Theme.of(this).brightness == Brightness.dark;
+  bool get isDark => MediaQuery.of(this).platformBrightness == Brightness.dark;
 }
 
 final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const HomeView(),
+      builder: (context, state) {
+        return const HomeView();
+      },
       routes: [
         GoRoute(
           path: 'details',
@@ -69,22 +71,29 @@ class MyApp extends StatelessWidget {
         BlocProvider<SavedAdviceCubit>(
           create: (_) => locator<SavedAdviceCubit>(),
         ),
+        BlocProvider<ThemeCubit>(
+          create: (_) => ThemeCubit(),
+        ),
       ],
-      child: MaterialApp.router(
-        title: 'Sophis',
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
-        theme: ThemeData(
-          colorScheme: lightColorScheme,
-          useMaterial3: true,
-          textTheme: GoogleFonts.poppinsTextTheme(),
-        ),
-        darkTheme: ThemeData(
-          colorScheme: darkScheme,
-          useMaterial3: true,
-          textTheme: GoogleFonts.poppinsTextTheme(),
-        ),
-        routerConfig: _router,
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            title: 'Sophis',
+            debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.dark,
+            theme: ThemeData(
+              colorScheme: state.colorScheme.light,
+              useMaterial3: true,
+              textTheme: GoogleFonts.poppinsTextTheme(),
+            ),
+            darkTheme: ThemeData(
+              colorScheme: state.colorScheme.dark,
+              useMaterial3: true,
+              textTheme: GoogleFonts.poppinsTextTheme(),
+            ),
+            routerConfig: _router,
+          );
+        },
       ),
     );
   }
