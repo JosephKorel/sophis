@@ -105,13 +105,6 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            child: TextButton(
-                              onPressed: savedAdvices,
-                              child: const Text('Saved Advices'),
-                            ),
-                          ),
                           const Spacer(),
                           Expanded(
                             flex: 2,

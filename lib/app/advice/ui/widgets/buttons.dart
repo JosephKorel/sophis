@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
@@ -29,41 +30,65 @@ class AdviceViewButtons extends StatelessWidget {
       context.read<SavedAdviceCubit>().saveAdvice(adviceToSave: adviceToSave);
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-          onPressed: () => _copyText(advice),
-          icon: const Icon(
-            Icons.copy,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(32),
+          topRight: Radius.circular(32),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            onPressed: () => _copyText(advice),
+            icon: const Icon(
+              Icons.copy,
+            ),
+            color: Theme.of(context).colorScheme.primary,
+          ).animate().slideY(
+                begin: 4,
+                end: 0,
+                curve: Curves.easeOutCubic,
+                duration: .6.seconds,
+              ),
+          const SizedBox(
+            width: 16,
           ),
-          color: Theme.of(context).colorScheme.primary,
-        ),
-        const SizedBox(
-          width: 16,
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.share,
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.share,
+            ),
+            color: Theme.of(context).colorScheme.primary,
+          ).animate().slideY(
+                begin: 4,
+                end: 0,
+                curve: Curves.easeOutCubic,
+                duration: .8.seconds,
+              ),
+          const SizedBox(
+            width: 16,
           ),
-          color: Theme.of(context).colorScheme.primary,
-        ),
-        const SizedBox(
-          width: 16,
-        ),
-        IconButton(
-          onPressed: saveAdvice,
-          icon: Icon(
-            isSaved ? Icons.bookmark_added : Icons.bookmark_add,
-          ),
-          color: Theme.of(context).colorScheme.primary,
-        ),
-      ],
+          IconButton(
+            onPressed: saveAdvice,
+            icon: Icon(
+              isSaved ? Icons.bookmark_added : Icons.bookmark_add,
+            ),
+            color: Theme.of(context).colorScheme.primary,
+          ).animate().slideY(
+                begin: 4,
+                end: 0,
+                curve: Curves.easeOutCubic,
+                duration: 1.seconds,
+              ),
+        ],
+      ),
     );
   }
 }
 
-void _copyText(String text) {
-  Clipboard.setData(ClipboardData(text: text));
+Future<void> _copyText(String text) async {
+  await Clipboard.setData(ClipboardData(text: text));
 }

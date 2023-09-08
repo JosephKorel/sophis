@@ -50,6 +50,8 @@ Future<void> main() async {
 
   await setUpLocator();
 
+  // Animate.restartOnHotReload = true;
+
   runApp(
     const MyApp(),
   );
@@ -80,7 +82,6 @@ class MyApp extends StatelessWidget {
           return MaterialApp.router(
             title: 'Sophis',
             debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.dark,
             theme: ThemeData(
               colorScheme: state.colorScheme.light,
               useMaterial3: true,

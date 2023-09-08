@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
+import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/main.dart';
 
 class UserInputWidget extends StatefulWidget {
@@ -74,15 +76,13 @@ class _AdviceWidgetState extends State<AdviceWidget> {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<AdviceBloc>();
+    final philosopher = context.watch<PhilosophersCubit>().state;
+
     final advice = bloc.state.advice;
 
     final boxShadowColor = context.isDark
         ? Colors.black.withOpacity(0.4)
         : Theme.of(context).colorScheme.onSurface.withOpacity(0.2);
-
-    final textBoxBg = context.isDark
-        ? Theme.of(context).colorScheme.background
-        : Theme.of(context).colorScheme.background;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -95,27 +95,52 @@ class _AdviceWidgetState extends State<AdviceWidget> {
           ),
         ],
       ),
-      child: DecoratedBox(
+      child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: textBoxBg,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
         ),
+        clipBehavior: Clip.hardEdge,
         child: Scrollbar(
           controller: _scrollController,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: SelectableText(
-                advice,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      letterSpacing: 1.2,
-                      color: Theme.of(context).colorScheme.onSurface,
+              child: Column(
+                children: [
+                  Text(
+                    philosopher.name,
+                    style: GoogleFonts.kadwa(
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            height: 1,
+                            fontWeight: FontWeight.bold,
+                            fontSize: philosopher.name.length > 12 ? 26 : 26,
+                          ),
                     ),
-                textAlign: TextAlign.justify,
-              ).animate().shimmer(),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  SelectableText(
+                    advice,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          letterSpacing: 1.2,
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
+        ).animate().shimmer(
+              color: Theme.of(context).colorScheme.background.withOpacity(0.2),
+              duration: .4.seconds,
+            ),
       ),
     );
   }
