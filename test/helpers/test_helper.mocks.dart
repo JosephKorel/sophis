@@ -11,6 +11,10 @@ import 'package:sophis/app/advice/data/dio_client.dart' as _i7;
 import 'package:sophis/app/advice/domain/api.dart' as _i3;
 import 'package:sophis/app/core/error.dart' as _i5;
 import 'package:sophis/app/home/domain/philosopher_entity.dart' as _i6;
+import 'package:sophis/app/saved_advices/domain/saved_advice_entity.dart'
+    as _i9;
+import 'package:sophis/app/saved_advices/presenter/controller/saved_advice_controller.dart'
+    as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -90,4 +94,45 @@ class MockDioOperations extends _i1.Mock implements _i7.DioOperations {
         returnValue:
             _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
       ) as _i4.Future<Map<String, dynamic>>);
+}
+
+/// A class which mocks [SavedAdviceInteractions].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSavedAdviceInteractions extends _i1.Mock
+    implements _i8.SavedAdviceInteractions {
+  MockSavedAdviceInteractions() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  List<_i9.SavedAdvice> getAdvices() => (super.noSuchMethod(
+        Invocation.method(
+          #getAdvices,
+          [],
+        ),
+        returnValue: <_i9.SavedAdvice>[],
+      ) as List<_i9.SavedAdvice>);
+  @override
+  _i4.Future<void> saveAdvice({required List<_i9.SavedAdvice>? advices}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #saveAdvice,
+          [],
+          {#advices: advices},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> deleteAdvice({required List<_i9.SavedAdvice>? advices}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteAdvice,
+          [],
+          {#advices: advices},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

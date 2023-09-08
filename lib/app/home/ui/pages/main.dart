@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 import 'package:sophis/app/home/ui/widgets/card.dart';
+
+final _philosophers = Philosophers.values.map((e) => e.info()).toList();
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -13,14 +16,21 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  ColorScheme colorScheme = cardTheme.colorScheme;
   late PageController _controller;
   late int pageIndex;
 
-  void _onPageChange(int index) {
+  Future<void> _onPageChange(int index) async {
     context.read<PhilosophersCubit>().onPageChange(index);
+
+    final image = _philosophers[index].image;
+    final newScheme = await ColorScheme.fromImageProvider(
+      provider: AssetImage(image),
+    );
 
     setState(() {
       pageIndex = index;
+      colorScheme = newScheme;
     });
   }
 
@@ -42,6 +52,16 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  void savedAdvices() {
+    context.go('/savedAdvices');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -51,16 +71,14 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final philosophers = Philosophers.values.map((e) => e.info()).toList();
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: PageView.builder(
         controller: _controller,
-        itemCount: philosophers.length,
+        itemCount: _philosophers.length,
         onPageChanged: _onPageChange,
         itemBuilder: (context, index) {
-          final philosopher = philosophers[index];
+          final philosopher = _philosophers[index];
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -73,11 +91,20 @@ class _HomeViewState extends State<HomeView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: TextButton(
+                      onPressed: savedAdvices,
+                      child: const Text('Saved Advices'),
+                    ),
+                  ),
                   const Spacer(),
                   Expanded(
                     flex: 2,
                     child: Theme(
-                      data: cardTheme,
+                      data: cardTheme.copyWith(
+                        colorScheme: colorScheme,
+                      ),
                       child: Builder(
                         builder: (ctx) => Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,13 +118,18 @@ class _HomeViewState extends State<HomeView> {
                                       Theme.of(ctx).colorScheme.onPrimary,
                                   backgroundColor: Theme.of(ctx)
                                       .colorScheme
-                                      .onSurface
-                                      .withOpacity(0.2),
+                                      .primary
+                                      .withOpacity(0.4),
                                 ),
-                              ).animate().slideX(begin: -2, end: 0)
+                              ).animate().slideX(
+                                    begin: -2,
+                                    end: 0,
+                                    curve: Curves.easeOut,
+                                    duration: .4.seconds,
+                                  )
                             else
                               const SizedBox.shrink(),
-                            if (pageIndex != philosophers.length - 1)
+                            if (pageIndex != _philosophers.length - 1)
                               IconButton.filled(
                                 onPressed: _nextPage,
                                 icon: const Icon(Icons.chevron_right),
@@ -106,10 +138,15 @@ class _HomeViewState extends State<HomeView> {
                                       Theme.of(ctx).colorScheme.onPrimary,
                                   backgroundColor: Theme.of(ctx)
                                       .colorScheme
-                                      .onSurface
-                                      .withOpacity(0.2),
+                                      .primary
+                                      .withOpacity(0.4),
                                 ),
-                              ).animate().slideX(begin: 2, end: 0)
+                              ).animate().slideX(
+                                    begin: 2,
+                                    end: 0,
+                                    curve: Curves.easeOut,
+                                    duration: .4.seconds,
+                                  )
                             else
                               const SizedBox(),
                           ],

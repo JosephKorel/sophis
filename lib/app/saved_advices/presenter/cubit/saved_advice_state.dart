@@ -7,7 +7,7 @@ sealed class SavedAdviceState extends Equatable {
   final bool loading;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [savedAdvices, loading];
 }
 
 final class SavedAdviceInitial extends SavedAdviceState {
@@ -20,7 +20,7 @@ final class SavedAdviceLoading extends SavedAdviceState {
 }
 
 final class SavedAdviceAdd extends SavedAdviceState {
-  const SavedAdviceAdd({required super.savedAdvices}) : super(loading: false);
+  const SavedAdviceAdd({required super.savedAdvices}) : super(loading: true);
 }
 
 final class SavedAdviceList extends SavedAdviceState {

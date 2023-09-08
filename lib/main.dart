@@ -9,6 +9,7 @@ import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/home/ui/pages/details.dart';
 import 'package:sophis/app/home/ui/pages/main.dart';
 import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart';
+import 'package:sophis/app/saved_advices/ui/pages/main.dart';
 import 'package:sophis/config/theme/color_schemes.g.dart';
 import 'package:sophis/config/theme/dark_scheme.g.dart';
 import 'package:sophis/injection_container.dart';
@@ -31,6 +32,10 @@ final _router = GoRouter(
           path: 'advice',
           builder: (context, state) => const AdviceView(),
         ),
+        GoRoute(
+          path: 'savedAdvices',
+          builder: (context, state) => const SavedAdvicesView(),
+        ),
       ],
     ),
   ],
@@ -39,7 +44,9 @@ final _router = GoRouter(
 Future<void> main() async {
   await dotenv.load();
 
-  setUpLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await setUpLocator();
 
   runApp(
     const MyApp(),
@@ -53,9 +60,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<PhilosophersCubit>(create: (_) => PhilosophersCubit()),
-        BlocProvider(create: (_) => locator<AdviceBloc>()),
-        BlocProvider<SavedAdviceCubit>(create: (_) => SavedAdviceCubit()),
+        BlocProvider<PhilosophersCubit>(
+          create: (_) => PhilosophersCubit(),
+        ),
+        BlocProvider(
+          create: (_) => locator<AdviceBloc>(),
+        ),
+        BlocProvider<SavedAdviceCubit>(
+          create: (_) => locator<SavedAdviceCubit>(),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Sophis',

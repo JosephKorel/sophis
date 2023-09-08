@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:sophis/app/home/domain/philosopher_entity.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
@@ -10,4 +11,12 @@ class PhilosophersCubit extends Cubit<PhilosopherEntity> {
 
   void onPageChange(int pageIndex) =>
       emit(Philosophers.values[pageIndex].info());
+
+  Future<ColorScheme> currentColorScheme() async {
+    final image = state.image;
+    final newScheme = await ColorScheme.fromImageProvider(
+      provider: AssetImage(image),
+    );
+    return newScheme;
+  }
 }
