@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -19,15 +22,32 @@ class AdviceViewButtons extends StatelessWidget {
 
     final isSaved = savedAdvices.any((element) => element.advice == advice);
 
-    void saveAdvice() {
-      final adviceToSave = SavedAdvice(
-        philosopherName: philosopher.name,
-        philosopherSchool: philosopher.school,
-        userInput: bloc.state.userInput,
-        advice: advice,
-      );
+    Future<void> saveAdvice() async {
+      try {
+        if (isSaved) {
+          await context
+              .read<SavedAdviceCubit>()
+              .removeAdvice(adviceText: advice);
 
-      context.read<SavedAdviceCubit>().saveAdvice(adviceToSave: adviceToSave);
+          _removedNotification(context);
+          return;
+        }
+
+        final adviceToSave = SavedAdvice(
+          philosopherName: philosopher.name,
+          philosopherSchool: philosopher.school,
+          userInput: bloc.state.userInput,
+          advice: advice,
+        );
+
+        await context
+            .read<SavedAdviceCubit>()
+            .saveAdvice(adviceToSave: adviceToSave);
+
+        _savedNotification(context);
+      } catch (e) {
+        _errorNotification(context);
+      }
     }
 
     return DecoratedBox(
@@ -42,7 +62,7 @@ class AdviceViewButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           IconButton(
-            onPressed: () => _copyText(advice),
+            onPressed: () => _copyText(advice, context),
             icon: const Icon(
               Icons.copy,
             ),
@@ -89,6 +109,68 @@ class AdviceViewButtons extends StatelessWidget {
   }
 }
 
-Future<void> _copyText(String text) async {
+Future<void> _copyText(String text, BuildContext context) async {
   await Clipboard.setData(ClipboardData(text: text));
+
+  _copiedTextNotification(context);
+}
+
+void _errorNotification(BuildContext context) {
+  Flushbar<void>(
+    message: 'Something went wrong. Try again.',
+    backgroundColor: Theme.of(context).colorScheme.error,
+    icon: Icon(
+      Icons.error,
+      color: Theme.of(context).colorScheme.onError,
+    ),
+    duration: 2.seconds,
+    animationDuration: .4.seconds,
+    margin: const EdgeInsets.all(16),
+    borderRadius: BorderRadius.circular(16),
+  ).show(context);
+}
+
+void _copiedTextNotification(BuildContext context) {
+  Flushbar<void>(
+    message: 'Copied',
+    backgroundColor: Theme.of(context).colorScheme.primary,
+    icon: Icon(
+      Icons.copy,
+      color: Theme.of(context).colorScheme.onPrimary,
+    ),
+    duration: 2.seconds,
+    animationDuration: .4.seconds,
+    margin: const EdgeInsets.all(16),
+    borderRadius: BorderRadius.circular(16),
+  ).show(context);
+}
+
+void _savedNotification(BuildContext context) {
+  Flushbar<void>(
+    message: 'Saved in favorites',
+    backgroundColor: Theme.of(context).colorScheme.primary,
+    icon: Icon(
+      Icons.check_circle,
+      color: Theme.of(context).colorScheme.onPrimary,
+    ),
+    duration: 2.seconds,
+    animationDuration: .4.seconds,
+    margin: const EdgeInsets.all(16),
+    borderRadius: BorderRadius.circular(16),
+  ).show(context);
+}
+
+void _removedNotification(BuildContext context) {
+  Flushbar<void>(
+    message: 'Removed from favorites',
+    backgroundColor: Theme.of(context).colorScheme.primary,
+    icon: Icon(
+      Icons.check_circle,
+      color: Theme.of(context).colorScheme.onPrimary,
+    ),
+    duration: 2.seconds,
+    animationDuration: .4.seconds,
+    margin: const EdgeInsets.all(16),
+    borderRadius: BorderRadius.circular(16),
+  ).show(context);
 }

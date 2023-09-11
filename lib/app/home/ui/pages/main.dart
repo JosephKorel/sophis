@@ -59,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  void savedAdvices() {
+  void _savedAdvices() {
     context.go('/savedAdvices');
   }
 
@@ -101,10 +101,32 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        top: 64,
+                        right: 16,
+                        bottom: 16,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: IconButton(
+                              onPressed: _savedAdvices,
+                              icon: const Icon(Icons.bookmark_outlined),
+                              style: IconButton.styleFrom(
+                                foregroundColor: colorScheme.onPrimary,
+                                backgroundColor:
+                                    colorScheme.primary.withOpacity(0.4),
+                              ),
+                            ).animate().slideY(
+                                  begin: -4,
+                                  end: 0,
+                                  curve: Curves.easeOut,
+                                  duration: .4.seconds,
+                                ),
+                          ),
                           const Spacer(),
                           Expanded(
                             flex: 2,

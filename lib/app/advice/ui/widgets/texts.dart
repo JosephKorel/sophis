@@ -80,6 +80,10 @@ class _AdviceWidgetState extends State<AdviceWidget> {
 
     final advice = bloc.state.advice;
 
+    final boxBgColor = context.isDark
+        ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+        : Theme.of(context).colorScheme.background;
+
     final boxShadowColor = context.isDark
         ? Colors.black.withOpacity(0.4)
         : Theme.of(context).colorScheme.onSurface.withOpacity(0.2);
@@ -98,7 +102,7 @@ class _AdviceWidgetState extends State<AdviceWidget> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+          color: boxBgColor,
         ),
         clipBehavior: Clip.hardEdge,
         child: Scrollbar(
@@ -138,7 +142,9 @@ class _AdviceWidgetState extends State<AdviceWidget> {
             ),
           ),
         ).animate().shimmer(
-              color: Theme.of(context).colorScheme.background.withOpacity(0.2),
+              color: context.isDark
+                  ? Theme.of(context).colorScheme.background.withOpacity(0.2)
+                  : null,
               duration: .4.seconds,
             ),
       ),

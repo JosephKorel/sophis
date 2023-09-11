@@ -26,4 +26,20 @@ class SavedAdviceCubit extends Cubit<SavedAdviceState> {
       return;
     }
   }
+
+  Future<void> removeAdvice({required String adviceText}) async {
+    final advices = state.savedAdvices
+        .where((element) => element.advice != adviceText)
+        .toList();
+
+    emit(SavedAdviceLoading(savedAdvices: advices));
+
+    try {
+      await _controller.deleteAdvice(advices: advices);
+
+      getAdvices();
+    } catch (e) {
+      return;
+    }
+  }
 }
