@@ -22,6 +22,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   late PageController _controller;
   late int pageIndex;
+  double dx = 0;
 
   Future<void> _fetchColors() async {
     await _getColorSchemes();
@@ -74,6 +75,14 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _controller = PageController();
     pageIndex = _controller.initialPage;
+    _controller.addListener(() {
+      setState(() {
+        final page = _controller.page ?? 0.0;
+        final index = pageIndex > 1 ? pageIndex : 1;
+        dx = page;
+      });
+    });
+
     _fetchColors();
   }
 
@@ -98,6 +107,7 @@ class _HomeViewState extends State<HomeView> {
                       image: DecorationImage(
                         image: AssetImage(philosopher.image),
                         fit: BoxFit.cover,
+                        // alignment: Alignment(dx * 1.4, 0),
                       ),
                     ),
                     child: Padding(

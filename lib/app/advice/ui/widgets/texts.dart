@@ -3,63 +3,62 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
-import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/main.dart';
 
-class UserInputWidget extends StatefulWidget {
-  const UserInputWidget({super.key});
-
-  @override
-  State<UserInputWidget> createState() => _UserInputWidgetState();
-}
-
-class _UserInputWidgetState extends State<UserInputWidget> {
-  bool expand = false;
-
-  void _onExpand() {
-    setState(() {
-      expand = !expand;
-    });
-  }
+class AdviceQuestion extends StatelessWidget {
+  const AdviceQuestion({super.key});
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<AdviceBloc>();
     final userInput = bloc.state.userInput;
 
-    if (userInput.length > 90) {
-      return Column(
-        children: [
-          Text(
-            userInput,
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: Theme.of(context).colorScheme.onSurface,
+    return Column(
+      children: [
+        DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.contact_support,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-            textAlign: TextAlign.center,
-            maxLines: expand ? null : 2,
-            overflow: TextOverflow.fade,
-          ).animate().shimmer(),
-          IconButton(
-            onPressed: _onExpand,
-            icon: Icon(
-              expand
-                  ? Icons.keyboard_arrow_up_rounded
-                  : Icons.keyboard_arrow_down_rounded,
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  'Question',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                ),
+              ],
             ),
           ),
-        ],
-      );
-    }
-
-    return Text(
-      userInput,
-      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-            fontStyle: FontStyle.italic,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-      textAlign: TextAlign.center,
-    ).animate().shimmer();
+        ).animate().fadeIn(duration: .1.seconds),
+        const SizedBox(
+          height: 8,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            userInput,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 18,
+                ),
+            textAlign: TextAlign.center,
+          ).animate().fadeIn(duration: .1.seconds),
+        ),
+      ],
+    );
   }
 }
 
@@ -76,9 +75,10 @@ class _AdviceWidgetState extends State<AdviceWidget> {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<AdviceBloc>();
-    final philosopher = context.watch<PhilosophersCubit>().state;
 
     final advice = bloc.state.advice;
+
+    final philosopher = bloc.state.philosopher;
 
     final boxBgColor = context.isDark
         ? Theme.of(context).colorScheme.primary.withOpacity(0.1)

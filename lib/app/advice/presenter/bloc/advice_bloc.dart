@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:sophis/app/advice/domain/api.dart';
 import 'package:sophis/app/core/error.dart';
 import 'package:sophis/app/home/domain/philosopher_entity.dart';
+import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
 part 'advice_event.dart';
 part 'advice_state.dart';
@@ -24,7 +25,13 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
 
     advice.fold(
       (l) => emit(AdviceFailure(failure: l)),
-      (r) => emit(ReceivedAdvice(advice: r, userInput: event.userInput)),
+      (r) => emit(
+        ReceivedAdvice(
+          philosopher: event.philosopherEntity.getPhilosopher(),
+          advice: r,
+          userInput: event.userInput,
+        ),
+      ),
     );
   }
 }

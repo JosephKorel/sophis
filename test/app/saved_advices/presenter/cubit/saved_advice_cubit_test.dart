@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:sophis/app/home/domain/philosopher_enum.dart';
 import 'package:sophis/app/saved_advices/domain/saved_advice_entity.dart';
 import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart';
 
@@ -13,8 +14,7 @@ void main() {
 
   setUp(() {
     savedAdvice = const SavedAdvice(
-      philosopherName: '',
-      philosopherSchool: '',
+      philosopher: Philosophers.kant,
       userInput: '',
       advice: '',
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +15,6 @@ import 'package:sophis/app/saved_advices/ui/pages/main.dart';
 import 'package:sophis/injection_container.dart';
 
 extension GetThemeMode on BuildContext {
-  // bool get isDark => Theme.of(this).brightness == Brightness.dark;
   bool get isDark => MediaQuery.of(this).platformBrightness == Brightness.dark;
 }
 
@@ -32,11 +32,31 @@ final _router = GoRouter(
         ),
         GoRoute(
           path: 'advice',
-          builder: (context, state) => const AdviceView(),
+          pageBuilder: (context, state) => CustomTransitionPage<void>(
+            child: const AdviceView(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: const AdviceView(),
+              );
+            },
+          ),
         ),
         GoRoute(
           path: 'savedAdvices',
-          builder: (context, state) => const SavedAdvicesView(),
+          pageBuilder: (context, state) => CustomTransitionPage<void>(
+            child: const SavedAdvicesView(),
+            transitionDuration: .1.seconds,
+            reverseTransitionDuration: .1.seconds,
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return ScaleTransition(
+                scale: animation,
+                child: const SavedAdvicesView(),
+              );
+            },
+          ),
         ),
       ],
     ),

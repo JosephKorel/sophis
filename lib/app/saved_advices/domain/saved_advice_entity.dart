@@ -1,19 +1,19 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
+import 'package:sophis/app/home/domain/philosopher_enum.dart';
 
 final class SavedAdvice extends Equatable {
   const SavedAdvice({
-    required this.philosopherName,
-    required this.philosopherSchool,
+    required this.philosopher,
     required this.userInput,
     required this.advice,
   });
 
   factory SavedAdvice.fromMap(Map<String, dynamic> map) {
     return SavedAdvice(
-      philosopherName: map['philosopherName'] as String,
-      philosopherSchool: map['philosopherSchool'] as String,
+      philosopher:
+          Philosophers.values.where((e) => e.name == map['philosopher']).first,
       userInput: map['userInput'] as String,
       advice: map['advice'] as String,
     );
@@ -23,18 +23,15 @@ final class SavedAdvice extends Equatable {
       SavedAdvice.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  List<Object> get props =>
-      [philosopherName, philosopherSchool, userInput, advice];
+  List<Object> get props => [philosopher, userInput, advice];
 
-  final String philosopherName;
-  final String philosopherSchool;
+  final Philosophers philosopher;
   final String userInput;
   final String advice;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'philosopherName': philosopherName,
-      'philosopherSchool': philosopherSchool,
+      'philosopher': philosopher.name,
       'userInput': userInput,
       'advice': advice,
     };

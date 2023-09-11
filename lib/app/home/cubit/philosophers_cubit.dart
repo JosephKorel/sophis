@@ -9,6 +9,9 @@ part 'philosophers_state.dart';
 class PhilosophersCubit extends Cubit<PhilosopherEntity> {
   PhilosophersCubit() : super(Philosophers.values.first.info());
 
+  void updateState({required Philosophers philosopher}) =>
+      emit(philosopher.info());
+
   void onPageChange(int pageIndex) =>
       emit(Philosophers.values[pageIndex].info());
 

@@ -34,8 +34,7 @@ class AdviceViewButtons extends StatelessWidget {
         }
 
         final adviceToSave = SavedAdvice(
-          philosopherName: philosopher.name,
-          philosopherSchool: philosopher.school,
+          philosopher: philosopher.getPhilosopher(),
           userInput: bloc.state.userInput,
           advice: advice,
         );

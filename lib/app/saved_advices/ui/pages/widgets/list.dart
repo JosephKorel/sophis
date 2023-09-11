@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/saved_advices/domain/saved_advice_entity.dart';
 import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart';
 import 'package:sophis/app/saved_advices/ui/pages/widgets/menu.dart';
@@ -29,8 +31,18 @@ class AdviceTile extends StatelessWidget {
 
   final SavedAdvice advice;
 
+  void _seeAdvice(BuildContext context) {
+    context
+        .read<PhilosophersCubit>()
+        .updateState(philosopher: advice.philosopher);
+
+    context.push('/advice');
+  }
+
   @override
   Widget build(BuildContext context) {
+    final philosopher = advice.philosopher.info();
+
     return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(
@@ -40,47 +52,54 @@ class AdviceTile extends StatelessWidget {
           16,
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    advice.userInput,
-                    style: GoogleFonts.poppins(
-                      textStyle:
-                          Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: Theme.of(context).colorScheme.onSurface,
-                                fontWeight: FontWeight.w500,
-                              ),
+      child: InkWell(
+        onTap: () => _seeAdvice(context),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      advice.userInput,
+                      style: GoogleFonts.poppins(
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                      maxLines: 2,
                     ),
-                    maxLines: 2,
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    '${advice.philosopherName} - ${advice.philosopherSchool}',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSurface
-                              .withOpacity(0.7),
-                          fontStyle: FontStyle.italic,
-                        ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      '${philosopher.name} - ${philosopher.school}',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withOpacity(0.7),
+                            fontStyle: FontStyle.italic,
+                          ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SavedAdviceMenu(
-              adviceText: advice.advice,
-            ),
-          ],
+              SavedAdviceMenu(
+                adviceText: advice.advice,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+void _seeAdvice(BuildContext context) {}

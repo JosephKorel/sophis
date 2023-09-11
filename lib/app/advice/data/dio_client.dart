@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+// Today i tried to do something i thought to be simple but ended up failing it. Now i'm feeling sad
 
 abstract class DioOperations {
   Future<Map<String, dynamic>> post({
@@ -21,6 +24,7 @@ final class DioConfig {
     return BaseOptions(
       baseUrl: _url,
       headers: _headers,
+      connectTimeout: 6.seconds,
     );
   }
 }

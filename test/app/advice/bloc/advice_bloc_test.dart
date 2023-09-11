@@ -49,7 +49,11 @@ void main() {
       ),
       expect: () => [
         AdviceInitial(),
-        const ReceivedAdvice(advice: receivedAdvice, userInput: userInput),
+        const ReceivedAdvice(
+          philosopher: philosopher,
+          advice: receivedAdvice,
+          userInput: userInput,
+        ),
       ],
     );
 
