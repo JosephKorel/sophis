@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/saved_advices/domain/saved_advice_entity.dart';
@@ -49,6 +50,10 @@ class AdviceViewButtons extends StatelessWidget {
       }
     }
 
+    void shareAdvice() {
+      Share.share(advice, subject: 'Check out this advice');
+    }
+
     return DecoratedBox(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -75,7 +80,7 @@ class AdviceViewButtons extends StatelessWidget {
             width: 16,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: shareAdvice,
             icon: const Icon(
               Icons.share,
             ),
