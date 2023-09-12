@@ -50,6 +50,7 @@ dependencies:
   get_it: ^7.6.4
   another_flushbar: ^1.12.30
   shared_preferences: ^2.2.1
+  share_plus: ^7.1.0
 
 dev_dependencies:
   flutter_test:
