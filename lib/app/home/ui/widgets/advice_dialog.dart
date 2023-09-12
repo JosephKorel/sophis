@@ -31,16 +31,22 @@ class AdviceDialog extends StatelessWidget {
         return;
       }
 
-      context.read<AdviceBloc>().add(
+/*       context.read<AdviceBloc>().add(
             FetchAdviceEvent(
               philosopherEntity: philosopher,
               userInput: userInput,
             ),
-          );
+          ); */
 
       close();
 
-      context.go('/advice');
+      context.go(
+        '/advice',
+        extra: FetchAdviceEvent(
+          philosopherEntity: philosopher,
+          userInput: userInput,
+        ),
+      );
     }
 
     return Theme(

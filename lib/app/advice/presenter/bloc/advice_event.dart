@@ -16,3 +16,11 @@ final class FetchAdviceEvent extends AdviceEvent {
   final PhilosopherEntity philosopherEntity;
   final String userInput;
 }
+
+final class UpdateAdviceEvent extends AdviceEvent {
+  const UpdateAdviceEvent({
+    required this.advice,
+  });
+
+  final AdviceState advice;
+}

@@ -11,6 +11,7 @@ part 'advice_state.dart';
 class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
   AdviceBloc(this._apiUseCase) : super(AdviceInitial()) {
     on<FetchAdviceEvent>(_fetchAdvice);
+    on<UpdateAdviceEvent>(_updateState);
   }
   final ApiUseCase _apiUseCase;
 
@@ -33,5 +34,12 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
         ),
       ),
     );
+  }
+
+  void _updateState(
+    UpdateAdviceEvent event,
+    Emitter<AdviceState> emit,
+  ) {
+    emit(event.advice);
   }
 }

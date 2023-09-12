@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
@@ -33,30 +32,29 @@ final _router = GoRouter(
         GoRoute(
           path: 'advice',
           pageBuilder: (context, state) => CustomTransitionPage<void>(
-            child: const AdviceView(),
+            child: BlocProvider(
+              create: (context) => AdviceBloc(locator()),
+              child: AdviceView(
+                adviceEvent: state.extra! as AdviceEvent,
+              ),
+            ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return FadeTransition(
                 opacity: animation,
-                child: const AdviceView(),
+                child: BlocProvider(
+                  create: (context) => AdviceBloc(locator()),
+                  child: AdviceView(
+                    adviceEvent: state.extra! as AdviceEvent,
+                  ),
+                ),
               );
             },
           ),
         ),
         GoRoute(
           path: 'savedAdvices',
-          pageBuilder: (context, state) => CustomTransitionPage<void>(
-            child: const SavedAdvicesView(),
-            transitionDuration: .1.seconds,
-            reverseTransitionDuration: .1.seconds,
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              return ScaleTransition(
-                scale: animation,
-                child: const SavedAdvicesView(),
-              );
-            },
-          ),
+          builder: (context, state) => const SavedAdvicesView(),
         ),
       ],
     ),
@@ -87,9 +85,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<PhilosophersCubit>(
           create: (_) => PhilosophersCubit(),
         ),
-        BlocProvider(
+        /* BlocProvider(
           create: (_) => locator<AdviceBloc>(),
-        ),
+        ), */
         BlocProvider<SavedAdviceCubit>(
           create: (_) => locator<SavedAdviceCubit>(),
         ),

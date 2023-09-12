@@ -78,7 +78,7 @@ class _AdviceWidgetState extends State<AdviceWidget> {
 
     final advice = bloc.state.advice;
 
-    final philosopher = bloc.state.philosopher;
+    final philosopher = bloc.state.philosopher.info();
 
     final boxBgColor = context.isDark
         ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
