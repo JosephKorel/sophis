@@ -27,8 +27,12 @@ final class UpdateAdviceEvent extends AdviceEvent {
 
 final class AdviceFailureEvent extends AdviceEvent {
   const AdviceFailureEvent({
+    required this.philosopherEntity,
+    required this.userInput,
     required this.failure,
   });
 
   final Failure failure;
+  final PhilosopherEntity philosopherEntity;
+  final String userInput;
 }

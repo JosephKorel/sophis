@@ -81,7 +81,11 @@ void main() {
       ),
       expect: () => [
         AdviceInitial(),
-        const AdviceFailure(failure: ResponseFailure('Error')),
+        const AdviceFailure(
+          exception: ResponseFailure('Error'),
+          philosopher: philosopher,
+          userInput: userInput,
+        ),
       ],
     );
   });

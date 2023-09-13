@@ -9,6 +9,7 @@ import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/core/cubit/theme_cubit.dart';
 import 'package:sophis/app/core/error.dart';
 import 'package:sophis/app/home/domain/philosopher_entity.dart';
+import 'package:sophis/app/home/domain/philosopher_enum.dart';
 import 'package:sophis/app/home/ui/widgets/advice_dialog.dart';
 import 'package:sophis/config/theme/color_schemes.g.dart';
 
@@ -31,8 +32,10 @@ class PhilosopherCardWidget extends StatelessWidget {
     void seeDetails() {
       context.go(
         '/advice',
-        extra: const AdviceFailureEvent(
-          failure: ConnectionFailure('Your connection is unstable'),
+        extra: AdviceFailureEvent(
+          failure: const ConnectionFailure('Your connection is unstable'),
+          userInput: 'How can i be more productive?',
+          philosopherEntity: Philosophers.seneca.info(),
         ),
       );
     }

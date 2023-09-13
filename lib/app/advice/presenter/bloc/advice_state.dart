@@ -31,6 +31,9 @@ final class ReceivedAdvice extends AdviceState {
 }
 
 final class AdviceFailure extends AdviceState {
-  const AdviceFailure({required Failure failure})
-      : super(userInput: '', advice: '', loading: false, exception: failure);
+  const AdviceFailure({
+    required super.exception,
+    required super.philosopher,
+    required super.userInput,
+  }) : super(advice: '', loading: false);
 }

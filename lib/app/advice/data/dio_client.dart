@@ -50,11 +50,7 @@ final class DioImplementation extends DioOperations {
       }
 
       return result.data!;
-    } on DioException catch (e) {
-      /*  if (e.type == DioExceptionType.connectionError) {
-        throw const SocketException('Connection Error');
-      } */
-      print(e);
+    } on DioException {
       rethrow;
     }
   }

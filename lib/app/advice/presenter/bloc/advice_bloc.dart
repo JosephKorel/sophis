@@ -26,7 +26,14 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
     );
 
     advice.fold(
-      (l) => emit(AdviceFailure(failure: l)),
+      (l) => _emitFailure(
+        AdviceFailureEvent(
+          philosopherEntity: event.philosopherEntity,
+          userInput: event.userInput,
+          failure: l,
+        ),
+        emit,
+      ),
       (r) => emit(
         ReceivedAdvice(
           philosopher: event.philosopherEntity.getPhilosopher(),
@@ -48,6 +55,12 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
     AdviceFailureEvent event,
     Emitter<AdviceState> emit,
   ) {
-    emit(AdviceFailure(failure: event.failure));
+    emit(
+      AdviceFailure(
+        exception: event.failure,
+        userInput: event.userInput,
+        philosopher: event.philosopherEntity.getPhilosopher(),
+      ),
+    );
   }
 }
