@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sophis/app/story/domain/chapters.dart';
-import 'package:sophis/app/story/domain/philosopher_history.dart';
+import 'package:sophis/app/story/ui/widgets/chapter.dart';
 
 class PhilosopherHistoryView extends StatefulWidget {
   const PhilosopherHistoryView({super.key});
@@ -12,57 +11,100 @@ class PhilosopherHistoryView extends StatefulWidget {
 }
 
 class _PhilosopherHistoryViewState extends State<PhilosopherHistoryView> {
+  late int pageIndex;
   final _controller = PageController();
-  final _chapters = StoryChapters.values;
+  final _chapters = HistoryChapters.values;
+
+  void _updatePage(int index) {
+    setState(() {
+      pageIndex = index;
+    });
+  }
+
+  void _nextPage() {
+    final page = pageIndex + 1;
+    _controller.animateToPage(
+      page,
+      duration: .800.seconds,
+      curve: Curves.easeOutCubic,
+    );
+  }
+
+  void _previousPage() {
+    final page = pageIndex - 1;
+    _controller.animateToPage(
+      page,
+      duration: .800.seconds,
+      curve: Curves.easeOutCubic,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
-    // _controller = PageController();
+    pageIndex = _controller.initialPage;
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.watch<PhilosophersCubit>();
-    final philosopher = bloc.state;
-    final story = philosopher.getPhilosopher().story();
-
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const Text(''),
-            Expanded(
-              child: PageView.builder(
-                itemCount: _chapters.length,
-                controller: _controller,
-                itemBuilder: (context, index) {
-                  final content =
-                      _chapters[index].content(philosopherStory: story);
-
-                  return SelectableText(content);
-                },
-              ),
+      body: Column(
+        children: [
+          const Text(''),
+          Expanded(
+            child: PageView.builder(
+              itemCount: _chapters.length,
+              controller: _controller,
+              onPageChanged: _updatePage,
+              itemBuilder: (context, index) {
+                return HistoryChapterView(chapter: _chapters[index]);
+              },
             ),
-            Row(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Previous'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Next'),
-                ),
+                if (pageIndex == 0)
+                  const SizedBox()
+                else
+                  TextButton.icon(
+                    onPressed: _previousPage,
+                    label: const Text('Previous'),
+                    icon: const Icon(Icons.keyboard_arrow_left_rounded),
+                  ).animate().slideY(
+                        begin: 4,
+                        curve: Curves.easeOutCirc,
+                      ),
+                if (pageIndex == _chapters.length - 1)
+                  FilledButton.icon(
+                    onPressed: _nextPage,
+                    label: const Text('Home'),
+                    icon: const Icon(Icons.home),
+                  ).animate().slideX(
+                        begin: 4,
+                        curve: Curves.easeOutCirc,
+                      )
+                else
+                  FilledButton.icon(
+                    onPressed: _nextPage,
+                    label: const Text('Next'),
+                    icon: const Icon(Icons.keyboard_arrow_right_rounded),
+                  ).animate().slideX(
+                        begin: 4,
+                        curve: Curves.easeOutCirc,
+                      ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
