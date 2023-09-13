@@ -11,7 +11,7 @@ class AdviceViewContainer extends StatefulWidget {
     super.key,
   });
 
-  final AdviceEvent adviceEvent;
+  final AdviceEvent? adviceEvent;
 
   @override
   State<AdviceViewContainer> createState() => _AdviceViewContainerState();
@@ -21,8 +21,9 @@ class _AdviceViewContainerState extends State<AdviceViewContainer> {
   @override
   void initState() {
     super.initState();
-
-    context.read<AdviceBloc>().add(widget.adviceEvent);
+    if (widget.adviceEvent != null) {
+      context.read<AdviceBloc>().add(widget.adviceEvent!);
+    }
   }
 
   @override
@@ -50,7 +51,7 @@ class AdviceView extends StatefulWidget {
     super.key,
   });
 
-  final AdviceEvent adviceEvent;
+  final AdviceEvent? adviceEvent;
 
   @override
   State<AdviceView> createState() => _AdviceViewState();
@@ -60,7 +61,9 @@ class _AdviceViewState extends State<AdviceView> {
   @override
   void initState() {
     super.initState();
-    context.read<AdviceBloc>().add(widget.adviceEvent);
+    if (widget.adviceEvent != null) {
+      context.read<AdviceBloc>().add(widget.adviceEvent!);
+    }
   }
 
   @override

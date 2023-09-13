@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
 import 'package:sophis/app/saved_advices/domain/saved_advice_entity.dart';
+import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart';
 import 'package:sophis/app/saved_advices/ui/pages/widgets/menu.dart';
 
 const savedAdv = SavedAdvice(
@@ -30,8 +32,8 @@ class AdvicesListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final savedAdvices = context.watch<SavedAdviceCubit>().state.savedAdvices;
-    final savedAdvices = [savedAdv];
+    final savedAdvices = context.watch<SavedAdviceCubit>().state.savedAdvices;
+    // final savedAdvices = [savedAdv];
 
     return ListView.builder(
       shrinkWrap: true,

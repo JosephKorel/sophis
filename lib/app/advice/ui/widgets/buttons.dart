@@ -51,7 +51,7 @@ class AdviceViewButtons extends StatelessWidget {
     }
 
     void shareAdvice() {
-      Share.share(advice, subject: 'Check out this advice');
+      Share.share(advice);
     }
 
     return DecoratedBox(

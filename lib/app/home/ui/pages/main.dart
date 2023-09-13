@@ -21,7 +21,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   late PageController _controller;
-  late int pageIndex;
   double dx = 0;
 
   Future<void> _fetchColors() async {
@@ -36,14 +35,10 @@ class _HomeViewState extends State<HomeView> {
     context.read<PhilosophersCubit>().onPageChange(index);
 
     _changeTheme(index);
-
-    setState(() {
-      pageIndex = index;
-    });
   }
 
-  void _nextPage() {
-    final page = pageIndex + 1;
+  void _nextPage(int currentPage) {
+    final page = currentPage + 1;
     _controller.animateToPage(
       page,
       duration: .800.seconds,
@@ -51,8 +46,8 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  void _previousPage() {
-    final page = pageIndex - 1;
+  void _previousPage(int currentPage) {
+    final page = currentPage - 1;
     _controller.animateToPage(
       page,
       duration: .800.seconds,
@@ -74,12 +69,9 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     _controller = PageController();
-    pageIndex = _controller.initialPage;
     _controller.addListener(() {
       setState(() {
-        final page = _controller.page ?? 0.0;
-        final index = pageIndex > 1 ? pageIndex : 1;
-        dx = page;
+        dx = _controller.page ?? 0.0;
       });
     });
 
@@ -107,7 +99,10 @@ class _HomeViewState extends State<HomeView> {
                       image: DecorationImage(
                         image: AssetImage(philosopher.image),
                         fit: BoxFit.cover,
-                        // alignment: Alignment(dx * 1.4, 0),
+                        alignment: Alignment(
+                          (dx - index) * 1.4,
+                          0,
+                        ),
                       ),
                     ),
                     child: Padding(
@@ -149,9 +144,9 @@ class _HomeViewState extends State<HomeView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    if (pageIndex != 0)
+                                    if (index != 0)
                                       IconButton.filled(
-                                        onPressed: _previousPage,
+                                        onPressed: () => _previousPage(index),
                                         icon: const Icon(Icons.chevron_left),
                                         style: IconButton.styleFrom(
                                           foregroundColor: Theme.of(ctx)
@@ -170,9 +165,9 @@ class _HomeViewState extends State<HomeView> {
                                           )
                                     else
                                       const SizedBox.shrink(),
-                                    if (pageIndex != _philosophers.length - 1)
+                                    if (index != _philosophers.length - 1)
                                       IconButton.filled(
-                                        onPressed: _nextPage,
+                                        onPressed: () => _nextPage(index),
                                         icon: const Icon(Icons.chevron_right),
                                         style: IconButton.styleFrom(
                                           foregroundColor: Theme.of(ctx)
