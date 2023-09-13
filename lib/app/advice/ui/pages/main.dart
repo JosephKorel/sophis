@@ -30,6 +30,7 @@ class _AdviceViewState extends State<AdviceView> {
       builder: (context, state) {
         return switch (state) {
           AdviceInitial() => const AdviceLoadingView(),
+          LoadingAdvice() => const AdviceLoadingView(),
           ReceivedAdvice(advice: _) => const ReceivedAdviceView(),
           AdviceFailure() => const AdviceFailureView()
         };

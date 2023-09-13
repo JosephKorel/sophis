@@ -33,7 +33,7 @@ class PhilosopherCardWidget extends StatelessWidget {
       context.go(
         '/advice',
         extra: AdviceFailureEvent(
-          failure: const ConnectionFailure('Your connection is unstable'),
+          failure: const ResponseFailure('Your connection is unstable'),
           userInput: 'How can i be more productive?',
           philosopherEntity: Philosophers.seneca.info(),
         ),

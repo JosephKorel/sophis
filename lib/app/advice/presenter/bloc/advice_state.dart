@@ -22,6 +22,12 @@ sealed class AdviceState extends Equatable {
 
 final class AdviceInitial extends AdviceState {}
 
+final class LoadingAdvice extends AdviceState {
+  const LoadingAdvice({
+    super.loading = true,
+  }) : super();
+}
+
 final class ReceivedAdvice extends AdviceState {
   const ReceivedAdvice({
     required super.philosopher,
