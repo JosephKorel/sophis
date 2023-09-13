@@ -24,3 +24,11 @@ final class UpdateAdviceEvent extends AdviceEvent {
 
   final AdviceState advice;
 }
+
+final class AdviceFailureEvent extends AdviceEvent {
+  const AdviceFailureEvent({
+    required this.failure,
+  });
+
+  final Failure failure;
+}

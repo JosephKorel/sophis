@@ -14,8 +14,6 @@ import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart
 import 'package:sophis/app/saved_advices/ui/pages/main.dart';
 import 'package:sophis/injection_container.dart';
 
-/* Tenho um aplicativo sobre filosofia, na tela principal tenho uma série de filósofos, quando você clicar num filósofo específico, quero falar sobre a história dele e da escola dele. Estava pensando em dividir a história dele e de sua filosofia em 4 partes. O que você acha? Como poderiam ser as divisões? */
-
 extension GetThemeMode on BuildContext {
   bool get isDark => MediaQuery.of(this).platformBrightness == Brightness.dark;
 }
@@ -37,8 +35,8 @@ final _router = GoRouter(
           pageBuilder: (context, state) => CustomTransitionPage<void>(
             child: BlocProvider(
               create: (context) => AdviceBloc(locator()),
-              child: const AdviceView(
-                adviceEvent: null,
+              child: AdviceView(
+                adviceEvent: state.extra! as AdviceEvent,
               ),
             ),
             transitionsBuilder:
@@ -47,8 +45,8 @@ final _router = GoRouter(
                 opacity: animation,
                 child: BlocProvider(
                   create: (context) => AdviceBloc(locator()),
-                  child: const AdviceView(
-                    adviceEvent: null,
+                  child: AdviceView(
+                    adviceEvent: state.extra! as AdviceEvent,
                   ),
                 ),
               );

@@ -12,6 +12,7 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
   AdviceBloc(this._apiUseCase) : super(AdviceInitial()) {
     on<FetchAdviceEvent>(_fetchAdvice);
     on<UpdateAdviceEvent>(_updateState);
+    on<AdviceFailureEvent>(_emitFailure);
   }
   final ApiUseCase _apiUseCase;
 
@@ -41,5 +42,12 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
     Emitter<AdviceState> emit,
   ) {
     emit(event.advice);
+  }
+
+  void _emitFailure(
+    AdviceFailureEvent event,
+    Emitter<AdviceState> emit,
+  ) {
+    emit(AdviceFailure(failure: event.failure));
   }
 }

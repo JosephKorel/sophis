@@ -116,3 +116,31 @@ Seneca, a Stoic Philosopher, encourages wisdom, virtue, and resilience in the fa
     }
   }
 }
+
+extension AdviceLoadingPhrase on Philosophers {
+  String loadingPhrase() {
+    switch (name) {
+      case 'seneca':
+        return '''
+Patience is the companion of wisdom.''';
+
+      case 'kant':
+        return '''Time and patience are the strongest warriors.''';
+
+      case 'nietzsche':
+        return '''In the stillness of patience, we find the wisdom to wait for the right moment.''';
+
+      case 'plato':
+        return '''A moment's patience can prevent a lifetime of regret.''';
+
+      case 'descartes':
+        return '''The reading of all good books is like a conversation with the finest minds of past centuries.''';
+
+      case 'confucius':
+        return '''It does not matter how slowly you go as long as you do not stop.''';
+
+      default:
+        return '';
+    }
+  }
+}
