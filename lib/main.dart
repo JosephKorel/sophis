@@ -12,6 +12,7 @@ import 'package:sophis/app/home/ui/pages/details.dart';
 import 'package:sophis/app/home/ui/pages/main.dart';
 import 'package:sophis/app/saved_advices/presenter/cubit/saved_advice_cubit.dart';
 import 'package:sophis/app/saved_advices/ui/pages/main.dart';
+import 'package:sophis/app/story/ui/pages/main.dart';
 import 'package:sophis/injection_container.dart';
 
 extension GetThemeMode on BuildContext {
@@ -56,6 +57,10 @@ final _router = GoRouter(
         GoRoute(
           path: 'savedAdvices',
           builder: (context, state) => const SavedAdvicesView(),
+        ),
+        GoRoute(
+          path: 'history',
+          builder: (context, state) => const PhilosopherHistoryView(),
         ),
       ],
     ),

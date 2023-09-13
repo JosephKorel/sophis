@@ -5,11 +5,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sophis/app/advice/presenter/bloc/advice_bloc.dart';
 import 'package:sophis/app/core/cubit/theme_cubit.dart';
-import 'package:sophis/app/core/error.dart';
 import 'package:sophis/app/home/domain/philosopher_entity.dart';
-import 'package:sophis/app/home/domain/philosopher_enum.dart';
 import 'package:sophis/app/home/ui/widgets/advice_dialog.dart';
 import 'package:sophis/config/theme/color_schemes.g.dart';
 
@@ -31,12 +28,7 @@ class PhilosopherCardWidget extends StatelessWidget {
 
     void seeDetails() {
       context.go(
-        '/advice',
-        extra: AdviceFailureEvent(
-          failure: const ResponseFailure('Your connection is unstable'),
-          userInput: 'How can i be more productive?',
-          philosopherEntity: Philosophers.seneca.info(),
-        ),
+        '/history',
       );
     }
 

@@ -1,7 +1,8 @@
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
+import 'package:sophis/app/story/domain/history_content.dart';
 
-final class PhilosopherStory {
-  PhilosopherStory({
+final class PhilosopherHistory {
+  PhilosopherHistory({
     required this.philosopher,
     required this.introduction,
     required this.life,
@@ -14,4 +15,16 @@ final class PhilosopherStory {
   final String life;
   final String ideas;
   final String legacy;
+}
+
+extension PersonalHistory on Philosophers {
+  PhilosopherHistory story() {
+    switch (name) {
+      case 'seneca':
+        return senecaStory;
+
+      default:
+        return senecaStory;
+    }
+  }
 }

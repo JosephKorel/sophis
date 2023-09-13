@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/story/domain/chapters.dart';
+import 'package:sophis/app/story/domain/philosopher_history.dart';
 
-class PhilosopherStoryView extends StatefulWidget {
-  const PhilosopherStoryView({super.key});
+class PhilosopherHistoryView extends StatefulWidget {
+  const PhilosopherHistoryView({super.key});
 
   @override
-  State<PhilosopherStoryView> createState() => _PhilosopherStoryViewState();
+  State<PhilosopherHistoryView> createState() => _PhilosopherHistoryViewState();
 }
 
-class _PhilosopherStoryViewState extends State<PhilosopherStoryView> {
+class _PhilosopherHistoryViewState extends State<PhilosopherHistoryView> {
   final _controller = PageController();
   final _chapters = StoryChapters.values;
 
@@ -24,6 +25,7 @@ class _PhilosopherStoryViewState extends State<PhilosopherStoryView> {
   Widget build(BuildContext context) {
     final bloc = context.watch<PhilosophersCubit>();
     final philosopher = bloc.state;
+    final story = philosopher.getPhilosopher().story();
 
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +41,10 @@ class _PhilosopherStoryViewState extends State<PhilosopherStoryView> {
                 itemCount: _chapters.length,
                 controller: _controller,
                 itemBuilder: (context, index) {
-                  return const Text('A');
+                  final content =
+                      _chapters[index].content(philosopherStory: story);
+
+                  return SelectableText(content);
                 },
               ),
             ),

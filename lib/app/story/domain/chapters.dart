@@ -1,3 +1,5 @@
+import 'package:sophis/app/story/domain/philosopher_history.dart';
+
 enum StoryChapters {
   introduction('Introduction'),
   life('Life and Biography'),
@@ -9,8 +11,22 @@ enum StoryChapters {
   final String title;
 }
 
-/* extension PhilosopherStory on StoryChapters {
-  String introductionChapter(){
+extension PhilosopherStoryContent on StoryChapters {
+  String content({required PhilosopherHistory philosopherStory}) {
+    switch (name) {
+      case 'introduction':
+        return philosopherStory.introduction;
+      case 'life':
+        return philosopherStory.life;
 
+      case 'ideas':
+        return philosopherStory.ideas;
+
+      case 'legacy':
+        return philosopherStory.legacy;
+
+      default:
+        return philosopherStory.introduction;
+    }
   }
-} */
+}

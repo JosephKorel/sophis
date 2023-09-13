@@ -1,7 +1,7 @@
 import 'package:sophis/app/home/domain/philosopher_enum.dart';
-import 'package:sophis/app/story/domain/philosopher_story.dart';
+import 'package:sophis/app/story/domain/philosopher_history.dart';
 
-final senecaStory = PhilosopherStory(
+final senecaStory = PhilosopherHistory(
   philosopher: Philosophers.seneca,
   introduction: '''
 Seneca, one of the most prominent Stoic philosophers of ancient Rome, lived in the 1st century AD during the Roman Empire. His full name was Lucius Annaeus Seneca, and he is renowned for his significant contributions to Stoic philosophy and literature.
