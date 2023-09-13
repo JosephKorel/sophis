@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:sophis/app/advice/data/data_source.dart';
 import 'package:sophis/app/advice/domain/api.dart';
 import 'package:sophis/app/advice/domain/request_body.dart';
@@ -27,13 +26,14 @@ final class ApiRepositoryImpl extends ApiRepository {
       final response = await _dataSource.postRequest(body: body);
 
       return Right(response);
-    } on SocketException {
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionError) {
+        return const Left(
+          ConnectionFailure('Connection error'),
+        );
+      }
       return const Left(
-        ConnectionFailure('Seems like your connection is unstable'),
-      );
-    } catch (e) {
-      return Left(
-        ResponseFailure(e.toString()),
+        ResponseFailure('Unknown error'),
       );
     }
   }

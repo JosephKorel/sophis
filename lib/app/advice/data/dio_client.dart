@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// Today i tried to do something i thought to be simple but ended up failing it. Now i'm feeling sad
-
 abstract class DioOperations {
   Future<Map<String, dynamic>> post({
     required Map<String, dynamic> body,
@@ -45,21 +43,17 @@ final class DioImplementation extends DioOperations {
       final result = await _dio.post<Map<String, dynamic>>(
         _endpoint,
         data: body,
-        /* onReceiveProgress: (count, total) {
-          debugPrint('ESTE ÉO COUNT');
-          debugPrint(count.toString());
-
-          debugPrint('ESTE ÉO TOTAL');
-          debugPrint(total.toString());
-        }, */
       );
 
       if (result.statusCode != 200) {
-        throw Exception();
+        throw DioException(requestOptions: result.requestOptions);
       }
 
       return result.data!;
-    } catch (e) {
+    } on DioException catch (e) {
+      /*  if (e.type == DioExceptionType.connectionError) {
+        throw const SocketException('Connection Error');
+      } */
       print(e);
       rethrow;
     }
