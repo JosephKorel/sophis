@@ -16,7 +16,7 @@ import 'package:sophis/app/story/ui/pages/main.dart';
 import 'package:sophis/injection_container.dart';
 
 extension GetThemeMode on BuildContext {
-  bool get isDark => MediaQuery.of(this).platformBrightness == Brightness.dark;
+  bool get isDark => Theme.of(this).brightness == Brightness.dark;
 }
 
 final _router = GoRouter(

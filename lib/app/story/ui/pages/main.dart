@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sophis/app/story/domain/chapters.dart';
 import 'package:sophis/app/story/ui/widgets/chapter.dart';
+import 'package:sophis/app/story/ui/widgets/indicator.dart';
 
 class PhilosopherHistoryView extends StatefulWidget {
   const PhilosopherHistoryView({super.key});
@@ -68,7 +69,11 @@ class _PhilosopherHistoryViewState extends State<PhilosopherHistoryView> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(top: 16, bottom: 4),
+            child: ChapterIndicator(currentIndex: pageIndex),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

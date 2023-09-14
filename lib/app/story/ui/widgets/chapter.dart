@@ -6,20 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sophis/app/home/cubit/philosophers_cubit.dart';
 import 'package:sophis/app/story/domain/chapters.dart';
 import 'package:sophis/app/story/domain/philosopher_history.dart';
-
-/*  DecoratedBox(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Icon(
-                    widget.chapter.icon(),
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ), */
+import 'package:sophis/main.dart';
 
 class HistoryChapterView extends StatefulWidget {
   const HistoryChapterView({required this.chapter, super.key});
@@ -47,16 +34,6 @@ class _HistoryChapterViewState extends State<HistoryChapterView> {
         children: [
           Row(
             children: [
-              Icon(
-                widget.chapter.icon(),
-                color: Theme.of(context).colorScheme.primary,
-              ).animate(delay: .2.seconds).slideX(
-                    begin: -4,
-                    curve: Curves.easeOutCirc,
-                  ),
-              const SizedBox(
-                width: 8,
-              ),
               Expanded(
                 child: Text(
                   widget.chapter.title,
@@ -102,7 +79,9 @@ class _HistoryChapterViewState extends State<HistoryChapterView> {
                 controller: _controller,
                 child: SelectableText(
                   content,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                   textAlign: TextAlign.justify,
                 )
                     .animate(delay: .2.seconds)
@@ -111,7 +90,16 @@ class _HistoryChapterViewState extends State<HistoryChapterView> {
                       duration: .8.seconds,
                       curve: Curves.easeOutCirc,
                     )
-                    .shimmer(delay: 1.seconds),
+                    .shimmer(
+                      delay: 1.seconds,
+                      color: context.isDark
+                          ? Theme.of(context)
+                              .colorScheme
+                              .background
+                              .withOpacity(0.4)
+                          : null,
+                      duration: 4.seconds,
+                    ),
               ),
             ),
           ),
