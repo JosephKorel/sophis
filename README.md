@@ -1,16 +1,24 @@
-# sophis
+# Sophis
 
-A new Flutter project.
+Welcome to my philosophers app! This project was developed with the primary goal of implementing a clean architecture and creating unit tests.
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
+This simple app allows you to explore the history of various renowned philosophers and also offers the unique functionality of interacting with them. You can read their stories, ask them questions directly using the chatGPT API, and save their responses on the device's local storage.
 
-A few resources to get you started if this is your first Flutter project:
+## Packages
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Main packages in use
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [GetIt](https://pub.dev/packages/get_it) for dependency injection
+- [BloC](https://pub.dev/packages/get_it) for state management
+- [Dio](https://pub.dev/packages/dio) for HTTP requests
+- [Go Router](https://pub.dev/packages/go_router) for navigation
+- [Dartz](https://pub.dev/packages/dartz) for error handling in a more structured way
+- [Flutter Animate](https://pub.dev/packages/flutter_animate) for animations
+- [Mockito](https://pub.dev/packages/mockito) for tests
+- [Equatable](https://pub.dev/packages/equatable) to reduce boilerplate code
+
+
+## Screenshots
+
