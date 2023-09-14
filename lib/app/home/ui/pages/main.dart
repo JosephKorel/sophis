@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -87,6 +88,12 @@ class _HomeViewState extends State<HomeView> {
         return switch (state) {
           ThemeInitial() => const Scaffold(),
           ThemeChange(colorScheme: _) => Scaffold(
+              appBar: AppBar(
+                systemOverlayStyle: SystemUiOverlayStyle.light,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+              ),
+              extendBodyBehindAppBar: true,
               resizeToAvoidBottomInset: false,
               body: PageView.builder(
                 controller: _controller,
