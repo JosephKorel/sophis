@@ -99,10 +99,7 @@ class _HomeViewState extends State<HomeView> {
                       image: DecorationImage(
                         image: AssetImage(philosopher.image),
                         fit: BoxFit.cover,
-                        alignment: Alignment(
-                          (dx - index) * 1.4,
-                          0,
-                        ),
+                        alignment: Alignment((dx - index) * 1.8, 0),
                       ),
                     ),
                     child: Padding(

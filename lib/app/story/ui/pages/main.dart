@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sophis/app/story/domain/chapters.dart';
 import 'package:sophis/app/story/ui/widgets/chapter.dart';
 import 'package:sophis/app/story/ui/widgets/indicator.dart';
@@ -89,23 +90,29 @@ class _PhilosopherHistoryViewState extends State<PhilosopherHistoryView> {
                         curve: Curves.easeOutCirc,
                       ),
                 if (pageIndex == _chapters.length - 1)
-                  FilledButton.icon(
-                    onPressed: _nextPage,
-                    label: const Text('Home'),
-                    icon: const Icon(Icons.home),
-                  ).animate().slideX(
-                        begin: 4,
-                        curve: Curves.easeOutCirc,
-                      )
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: FilledButton.icon(
+                      onPressed: () => context.pop(),
+                      label: const Text('Home'),
+                      icon: const Icon(Icons.home),
+                    ).animate().slideX(
+                          begin: 4,
+                          curve: Curves.easeOutCirc,
+                        ),
+                  )
                 else
-                  FilledButton.icon(
-                    onPressed: _nextPage,
-                    label: const Text('Next'),
-                    icon: const Icon(Icons.keyboard_arrow_right_rounded),
-                  ).animate().slideX(
-                        begin: 4,
-                        curve: Curves.easeOutCirc,
-                      ),
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: FilledButton.icon(
+                      onPressed: _nextPage,
+                      label: const Text('Next'),
+                      icon: const Icon(Icons.keyboard_arrow_right_rounded),
+                    ).animate().slideX(
+                          begin: 4,
+                          curve: Curves.easeOutCirc,
+                        ),
+                  ),
               ],
             ),
           ),

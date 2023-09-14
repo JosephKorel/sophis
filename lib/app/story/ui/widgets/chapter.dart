@@ -73,33 +73,38 @@ class _HistoryChapterViewState extends State<HistoryChapterView> {
             height: 16,
           ),
           Expanded(
-            child: Scrollbar(
-              controller: _controller,
-              child: SingleChildScrollView(
+            child: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: Scrollbar(
                 controller: _controller,
-                child: SelectableText(
-                  content,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface,
+                child: SingleChildScrollView(
+                  controller: _controller,
+                  child: SelectableText(
+                    content,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: 16,
+                        ),
+                    textAlign: TextAlign.justify,
+                  )
+                      .animate(delay: .2.seconds)
+                      .slideX(
+                        begin: 8,
+                        duration: .8.seconds,
+                        curve: Curves.easeOutCirc,
+                      )
+                      .shimmer(
+                        delay: 1.seconds,
+                        color: context.isDark
+                            ? Theme.of(context)
+                                .colorScheme
+                                .background
+                                .withOpacity(0.4)
+                            : null,
+                        duration: 4.seconds,
                       ),
-                  textAlign: TextAlign.justify,
-                )
-                    .animate(delay: .2.seconds)
-                    .slideX(
-                      begin: 8,
-                      duration: .8.seconds,
-                      curve: Curves.easeOutCirc,
-                    )
-                    .shimmer(
-                      delay: 1.seconds,
-                      color: context.isDark
-                          ? Theme.of(context)
-                              .colorScheme
-                              .background
-                              .withOpacity(0.4)
-                          : null,
-                      duration: 4.seconds,
-                    ),
+                ),
               ),
             ),
           ),

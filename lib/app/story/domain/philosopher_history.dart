@@ -21,10 +21,25 @@ extension PersonalHistory on Philosophers {
   PhilosopherHistory story() {
     switch (name) {
       case 'seneca':
-        return senecaStory;
+        return senecaHistory;
+
+      case 'kant':
+        return kantHistory;
+
+      case 'nietzsche':
+        return nietzscheHistory;
+
+      case 'descartes':
+        return descartesHistory;
+
+      case 'plato':
+        return platoHistory;
+
+      case 'confucius':
+        return confuciusHistory;
 
       default:
-        return senecaStory;
+        return senecaHistory;
     }
   }
 }
