@@ -14,20 +14,17 @@ final locator = GetIt.instance;
 
 Future<void> _initSharedPref() async {
   final sharedPref = await SharedPreferences.getInstance();
-  locator.registerSingleton<SharedPreferences>(sharedPref);
+
+  locator.registerLazySingleton<SavedAdviceInteractions>(
+    () => AdviceInteraction(sharedPref),
+  );
+
+  locator.registerFactory(() => SavedAdviceCubit(locator()));
 }
 
 Future<void> setUpLocator() async {
   // bloc
   locator.registerFactory(() => AdviceBloc(locator()));
-
-  /*  locator
-      .registerSingletonAsync<SharedPreferences>(SharedPreferences.getInstance); */
-
-  // await locator.isReady<SharedPreferences>();
-
-  // saved advice cubit
-  locator.registerFactory(() => SavedAdviceCubit(locator()));
 
   // apiUseCase
   locator.registerLazySingleton<ApiUseCase>(
@@ -59,14 +56,6 @@ Future<void> setUpLocator() async {
   // dio client
   locator.registerLazySingleton<Dio>(Dio.new);
 
-  // shared preferences
-  locator.registerSingletonAsync<SharedPreferences>(() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs;
-  });
-
-  // saved advice
-  locator.registerLazySingleton<SavedAdviceInteractions>(
-    () => AdviceInteraction(locator()),
-  );
+  // Shared preferences related classes
+  await _initSharedPref();
 }

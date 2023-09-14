@@ -26,8 +26,9 @@ final class AdviceInteraction extends SavedAdviceInteractions {
 
   @override
   Future<void> saveAdvice({required List<SavedAdvice> advices}) async {
+    final myPrefs = await SharedPreferences.getInstance();
     try {
-      final onSave = await _sharedPreferences.setStringList(
+      final onSave = await myPrefs.setStringList(
         adviceKey,
         advices.map((e) => e.toJson()).toList(),
       );

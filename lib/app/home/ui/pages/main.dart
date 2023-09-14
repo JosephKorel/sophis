@@ -92,6 +92,19 @@ class _HomeViewState extends State<HomeView> {
                 systemOverlayStyle: SystemUiOverlayStyle.light,
                 elevation: 0,
                 backgroundColor: Colors.transparent,
+                title: IconButton(
+                  onPressed: _savedAdvices,
+                  icon: const Icon(Icons.bookmark_outlined),
+                  style: IconButton.styleFrom(
+                    foregroundColor: colorScheme.onPrimary,
+                    backgroundColor: colorScheme.primary.withOpacity(0.4),
+                  ),
+                ).animate().slideY(
+                      begin: -4,
+                      end: 0,
+                      curve: Curves.easeOut,
+                      duration: .4.seconds,
+                    ),
               ),
               extendBodyBehindAppBar: true,
               resizeToAvoidBottomInset: false,
@@ -119,7 +132,7 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Align(
+                          /* Align(
                             alignment: Alignment.centerLeft,
                             child: IconButton(
                               onPressed: _savedAdvices,
@@ -135,7 +148,7 @@ class _HomeViewState extends State<HomeView> {
                                   curve: Curves.easeOut,
                                   duration: .4.seconds,
                                 ),
-                          ),
+                          ), */
                           const Spacer(),
                           Expanded(
                             flex: 2,

@@ -11,7 +11,7 @@ This simple app allows you to explore the history of various renowned philosophe
 Main packages in use
 
 - [GetIt](https://pub.dev/packages/get_it) for dependency injection
-- [BloC](https://pub.dev/packages/get_it) for state management
+- [BloC](https://pub.dev/packages/flutter_bloc) for state management
 - [Dio](https://pub.dev/packages/dio) for HTTP requests
 - [Go Router](https://pub.dev/packages/go_router) for navigation
 - [Dartz](https://pub.dev/packages/dartz) for error handling in a more structured way

@@ -11,7 +11,7 @@ sealed class SavedAdviceState extends Equatable {
 }
 
 final class SavedAdviceInitial extends SavedAdviceState {
-  SavedAdviceInitial() : super(savedAdvices: []);
+  const SavedAdviceInitial({required super.savedAdvices}) : super();
 }
 
 final class SavedAdviceLoading extends SavedAdviceState {

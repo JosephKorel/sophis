@@ -6,7 +6,12 @@ import 'package:sophis/app/saved_advices/presenter/controller/saved_advice_contr
 part 'saved_advice_state.dart';
 
 class SavedAdviceCubit extends Cubit<SavedAdviceState> {
-  SavedAdviceCubit(this._controller) : super(SavedAdviceInitial());
+  SavedAdviceCubit(this._controller)
+      : super(
+          SavedAdviceInitial(
+            savedAdvices: _controller.getAdvices(),
+          ),
+        );
   final SavedAdviceInteractions _controller;
 
   void getAdvices() {

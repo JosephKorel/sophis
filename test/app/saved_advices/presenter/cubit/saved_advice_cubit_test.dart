@@ -24,7 +24,8 @@ void main() {
 
   group('Tests for savedAdviceCubit', () {
     test('Should be SavedAdviceInitial state', () {
-      expect(SavedAdviceInitial(), savedAdviceCubit.state);
+      expect(
+          const SavedAdviceInitial(savedAdvices: []), savedAdviceCubit.state);
     });
 
     blocTest(
