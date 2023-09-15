@@ -114,12 +114,14 @@ class _HomeViewState extends State<HomeView> {
                 onPageChanged: _onPageChange,
                 itemBuilder: (context, index) {
                   final philosopher = _philosophers[index];
+                  final alignmentX = ((dx - index) * 1.4).clamp(-1.0, 1.0);
+
                   return Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(philosopher.image),
                         fit: BoxFit.cover,
-                        alignment: Alignment((dx - index) * 1.8, 0),
+                        alignment: Alignment(alignmentX, 0),
                       ),
                     ),
                     child: Padding(
@@ -132,23 +134,6 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          /* Align(
-                            alignment: Alignment.centerLeft,
-                            child: IconButton(
-                              onPressed: _savedAdvices,
-                              icon: const Icon(Icons.bookmark_outlined),
-                              style: IconButton.styleFrom(
-                                foregroundColor: colorScheme.onPrimary,
-                                backgroundColor:
-                                    colorScheme.primary.withOpacity(0.4),
-                              ),
-                            ).animate().slideY(
-                                  begin: -4,
-                                  end: 0,
-                                  curve: Curves.easeOut,
-                                  duration: .4.seconds,
-                                ),
-                          ), */
                           const Spacer(),
                           Expanded(
                             flex: 2,

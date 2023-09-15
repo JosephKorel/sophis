@@ -79,7 +79,6 @@ class AdviceLoadingView extends StatelessWidget {
     final philosopher = context.watch<AdviceBloc>().state.philosopher;
 
     return Scaffold(
-      // appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(

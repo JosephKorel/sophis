@@ -20,7 +20,7 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
     FetchAdviceEvent event,
     Emitter<AdviceState> emit,
   ) async {
-    emit(const LoadingAdvice());
+    emit(LoadingAdvice(philosopher: event.philosopherEntity.getPhilosopher()));
 
     final advice = await _apiUseCase.call(
       philosopher: event.philosopherEntity,

@@ -21,6 +21,8 @@ class SavedAdviceMenu extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       ),
       padding: EdgeInsets.zero,
+      surfaceTintColor: Theme.of(context).colorScheme.background,
+      position: PopupMenuPosition.under,
       itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItems>>[
         PopupMenuItem<MenuItems>(
           value: MenuItems.delete,
@@ -28,53 +30,21 @@ class SavedAdviceMenu extends StatelessWidget {
           child: ListTile(
             iconColor: Theme.of(context).colorScheme.error,
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-            leading: const Icon(Icons.delete),
-            title: const Text('Remove'),
+            dense: true,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            leading: const Icon(
+              Icons.delete,
+              size: 20,
+            ),
+            title: Text(
+              'Remove',
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+            ),
           ),
         ),
       ],
-    );
-  }
-}
-
-class AdviceMenu extends StatefulWidget {
-  const AdviceMenu({super.key});
-
-  @override
-  State<AdviceMenu> createState() => _AdviceMenuState();
-}
-
-class _AdviceMenuState extends State<AdviceMenu> {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: MenuAnchor(
-        builder:
-            (BuildContext context, MenuController controller, Widget? child) {
-          return IconButton(
-            onPressed: () {
-              if (controller.isOpen) {
-                controller.close();
-              } else {
-                controller.open();
-              }
-            },
-            icon: const Icon(Icons.more_horiz),
-            tooltip: 'Show menu',
-          );
-        },
-        menuChildren: [
-          MenuItemButton(
-            onPressed: () {},
-            child: ListTile(
-              tileColor: Theme.of(context).colorScheme.primaryContainer,
-              contentPadding: const EdgeInsets.only(right: 8),
-              leading: const Icon(Icons.delete),
-              title: const Text('Remove'),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

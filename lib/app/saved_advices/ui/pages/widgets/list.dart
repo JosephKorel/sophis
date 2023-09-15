@@ -100,6 +100,7 @@ class AdviceTile extends StatelessWidget {
               SavedAdviceMenu(
                 adviceText: advice.advice,
               ),
+              // MyMenuBar()
             ],
           ),
         ),

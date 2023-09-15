@@ -24,6 +24,7 @@ final class AdviceInitial extends AdviceState {}
 
 final class LoadingAdvice extends AdviceState {
   const LoadingAdvice({
+    required super.philosopher,
     super.loading = true,
   }) : super();
 }

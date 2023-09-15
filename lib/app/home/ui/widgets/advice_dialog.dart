@@ -31,13 +31,6 @@ class AdviceDialog extends StatelessWidget {
         return;
       }
 
-/*       context.read<AdviceBloc>().add(
-            FetchAdviceEvent(
-              philosopherEntity: philosopher,
-              userInput: userInput,
-            ),
-          ); */
-
       close();
 
       context.go(
@@ -51,81 +44,78 @@ class AdviceDialog extends StatelessWidget {
 
     return Theme(
       data: Theme.of(context),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.9,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                title,
-                style: GoogleFonts.montserrat(
-                  textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.9),
-                        fontWeight: FontWeight.w500,
-                      ),
-                  fontStyle: FontStyle.italic,
-                ),
-                textAlign: TextAlign.center,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.montserrat(
+                textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withOpacity(0.9),
+                      fontWeight: FontWeight.w500,
+                    ),
+                fontStyle: FontStyle.italic,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: TextField(
-                  controller: controller,
-                  minLines: 3,
-                  maxLines: 4,
-                  maxLength: 182,
-                  decoration: InputDecoration(
-                    hintText: 'Ex: How can i be more disciplined?',
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 12,
-                    ),
-                    counterText: '',
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.background,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.2),
-                      ),
+              textAlign: TextAlign.center,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: TextField(
+                controller: controller,
+                minLines: 3,
+                maxLines: 4,
+                maxLength: 182,
+                decoration: InputDecoration(
+                  hintText: 'Ex: How can i be more disciplined?',
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
+                  counterText: '',
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.background,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withOpacity(0.2),
+                    ),
                   ),
                 ),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: close,
-                    child: const Text('Close'),
-                  ),
-                  FilledButton.icon(
-                    onPressed: handleAsk,
-                    icon: const Icon(Icons.check_rounded),
-                    label: const Text('Submit'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: close,
+                  child: const Text('Close'),
+                ),
+                FilledButton.icon(
+                  onPressed: handleAsk,
+                  icon: const Icon(Icons.check_rounded),
+                  label: const Text('Submit'),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
