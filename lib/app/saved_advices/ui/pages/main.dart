@@ -8,7 +8,7 @@ class SavedAdvicesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Saved'),
+        title: const Text('Saved Questions'),
       ),
       body: const AdvicesListContainer(),
     );

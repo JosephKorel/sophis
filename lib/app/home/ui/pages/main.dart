@@ -122,6 +122,7 @@ class _HomeViewState extends State<HomeView> {
                         image: AssetImage(philosopher.image),
                         fit: BoxFit.cover,
                         alignment: Alignment(alignmentX, 0),
+                        scale: 8,
                       ),
                     ),
                     child: Padding(

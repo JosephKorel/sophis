@@ -14,10 +14,13 @@ class AdvicesListContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final advices = context.watch<SavedAdviceCubit>().state.savedAdvices;
 
-    return ListView.builder(
+    return ListView.separated(
       shrinkWrap: true,
       padding: const EdgeInsets.all(16),
       itemCount: advices.length,
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 16,
+      ),
       itemBuilder: (context, index) {
         final advice = advices[index];
         return AdviceTile(advice: advice);
