@@ -23,6 +23,9 @@ Future<void> _initSharedPref() async {
 }
 
 Future<void> setUpLocator() async {
+  // Shared preferences related classes
+  await _initSharedPref();
+
   // bloc
   locator.registerFactory(() => AdviceBloc(locator()));
 
@@ -55,7 +58,4 @@ Future<void> setUpLocator() async {
 
   // dio client
   locator.registerLazySingleton<Dio>(Dio.new);
-
-  // Shared preferences related classes
-  await _initSharedPref();
 }

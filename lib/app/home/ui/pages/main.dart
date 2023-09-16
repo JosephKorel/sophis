@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sophis/app/core/cubit/scheme.dart';
 import 'package:sophis/app/core/cubit/theme_cubit.dart';
@@ -27,6 +28,9 @@ class _HomeViewState extends State<HomeView> {
   Future<void> _fetchColors() async {
     await _getColorSchemes();
     _changeTheme(0);
+
+    // After fetching colors, remove the splash screen
+    FlutterNativeSplash.remove();
   }
 
   void _changeTheme(int index) =>

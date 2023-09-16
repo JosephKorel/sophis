@@ -17,11 +17,14 @@ class AdviceViewButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<AdviceBloc>();
-    final savedAdvices = context.watch<SavedAdviceCubit>().state.savedAdvices;
+    final adviceBloc = context.watch<SavedAdviceCubit>();
+    final savedAdvices = adviceBloc.state.savedAdvices;
     final philosopher = context.watch<PhilosophersCubit>().state;
     final advice = bloc.state.advice;
 
     final isSaved = savedAdvices.any((element) => element.advice == advice);
+
+    print(savedAdvices);
 
     Future<void> saveAdvice() async {
       try {
