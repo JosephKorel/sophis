@@ -22,3 +22,6 @@ Main packages in use
 
 ## Screenshots
 
+| ![](/.github/home.jpg) | ![](/.github/home_second.jpg)
+
+
