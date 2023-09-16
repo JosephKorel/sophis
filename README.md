@@ -22,6 +22,7 @@ Main packages in use
 
 ## Screenshots
 
-| ![](/.github/home.jpg) | ![](/.github/home_second.jpg)
+| ![Home](/.github/home.jpg) | ![Home - Nietzsche](/.github/home_second.jpg)
+|:------------------------------:|:----------------------------------:|
 
 
