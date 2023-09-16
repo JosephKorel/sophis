@@ -58,7 +58,6 @@ class _PhilosopherHistoryViewState extends State<PhilosopherHistoryView> {
     return Scaffold(
       body: Column(
         children: [
-          const Text(''),
           Expanded(
             child: PageView.builder(
               itemCount: _chapters.length,
